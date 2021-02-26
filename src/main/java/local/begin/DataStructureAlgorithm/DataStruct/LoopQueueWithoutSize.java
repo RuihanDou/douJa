@@ -24,11 +24,7 @@ public class LoopQueueWithoutSize<E> implements Queue<E> {
 
     @Override
     public int getSize() {
-        if(tail >= front) {
-            return (tail - front) % data.length;
-        } else {
-            return tail % data.length + data.length - front % data.length;
-        }
+        return tail >= front ? tail - front : tail - front + data.length;
     }
 
     @Override
@@ -45,18 +41,21 @@ public class LoopQueueWithoutSize<E> implements Queue<E> {
 
         data[tail] = e;
         tail = (tail + 1) % data.length;
+//        tail++;
 //        size++;
 
     }
 
     private void resize(int newCapacity) {
         E[] newData = (E[]) new Object[newCapacity + 1];
-        for(int i = 0; i < getSize(); i++){
+        // 由于一通操作后getSize取出的值会发生变化，所以得现在预存
+        int sz = getSize();
+        for(int i = 0; i < sz; i++){
             newData[i] = data[(i + front) % data.length];
         }
         data = newData;
         front = 0;
-        tail = getSize();
+        tail = sz;
     }
 
     @Override
@@ -108,10 +107,12 @@ public class LoopQueueWithoutSize<E> implements Queue<E> {
         for(int i = 0; i < 10; i++){
             queue.enqueue(i);
             System.out.println(queue);
+            System.out.println(queue.getSize());
 
             if(i % 3 == 2){
                 queue.dequeue();
                 System.out.println(queue);
+                System.out.println(queue.getSize());
             }
         }
     }
