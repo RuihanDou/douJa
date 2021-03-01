@@ -8,7 +8,7 @@ public class LoopQueueWithoutWaste<E> implements Queue<E> {
     private int size;
 
     public LoopQueueWithoutWaste(int capacity){
-        this.data = (E[])new Object[capacity + 1];
+        this.data = (E[])new Object[capacity];
         front = 0;
         tail = 0;
         size = 0;
@@ -19,7 +19,7 @@ public class LoopQueueWithoutWaste<E> implements Queue<E> {
     }
 
     public int getCapacity(){
-        return data.length - 1;
+        return data.length;
     }
 
     @Override
@@ -29,24 +29,24 @@ public class LoopQueueWithoutWaste<E> implements Queue<E> {
 
     @Override
     public boolean isEmpty() {
-        return front == tail;
+        return size == 0;
     }
 
     @Override
     public void enqueue(E e) {
 
-        if((tail + 1) % data.length == front){
+        if(size == getCapacity()){
             resize(this.getCapacity() * 2);
         }
 
         data[tail] = e;
         tail = (tail + 1) % data.length;
-        size++;
+        size ++;
 
     }
 
     private void resize(int newCapacity) {
-        E[] newData = (E[]) new Object[newCapacity + 1];
+        E[] newData = (E[]) new Object[newCapacity];
         for(int i = 0; i < size; i++){
             newData[i] = data[(i + front) % data.length];
         }
@@ -89,9 +89,9 @@ public class LoopQueueWithoutWaste<E> implements Queue<E> {
         StringBuilder res = new StringBuilder();
         res.append(String.format("LoopQueue: size = %d , capacity = %d\n", size, getCapacity()));
         res.append("front [");
-        for(int i = front; i != tail; i = (i + 1) % data.length) {
-            res.append(data[i]);
-            if((i + 1) % data.length != tail){
+        for(int i = 0; i < size; i++) {
+            res.append(data[(front + i) % data.length]);
+            if((i + 1 + front) % data.length != tail){
                 res.append(", ");
             }
         }
