@@ -1,7 +1,5 @@
-package local.begin.JianZhi;
+package local.begin.JianZhiOffer;
 
-
-import java.util.Arrays;
 
 /**
  * 面试题04. 二维数组中的查找

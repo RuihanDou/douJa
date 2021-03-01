@@ -1,4 +1,4 @@
-package local.begin.JianZhi;
+package local.begin.JianZhiOffer;
 
 import local.begin.struct.ListNode;
 
