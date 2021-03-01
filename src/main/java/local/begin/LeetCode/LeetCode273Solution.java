@@ -79,35 +79,35 @@ public class LeetCode273Solution {
         return rst.toString();
     }
 
-    private static List<String> simpleNumberToWords(int num, List<String> listSring) {
+    private static List<String> simpleNumberToWords(int num, List<String> listString) {
         if(num > 999 || num < 1) {
             throw new IllegalArgumentException("illegal integer");
         }
         int hundredNum = num / 100;
         if(hundredNum > 0){
-            listSring.add(singles[hundredNum]);
-            listSring.add(hundred);
+            listString.add(singles[hundredNum]);
+            listString.add(hundred);
         }
 
         int numSmall = num % 100;
         if(numSmall > 0){
             if(numSmall < 20) {
-                listSring.add(singles[numSmall]);
+                listString.add(singles[numSmall]);
             } else {
-                listSring.add(tens[numSmall / 10]);
+                listString.add(tens[numSmall / 10]);
                 int single = numSmall % 10;
                 if (single > 0) {
-                    listSring.add(singles[numSmall % 10]);
+                    listString.add(singles[numSmall % 10]);
                 }
             }
         }
 
-        return listSring;
+        return listString;
     }
 
     public static void main(String[] args) {
         LeetCode273Solution solution = new LeetCode273Solution();
-        System.out.println(solution.numberToWords(20));
+        System.out.println(solution.numberToWords(40592));
     }
 
 }
