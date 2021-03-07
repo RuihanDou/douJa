@@ -1,6 +1,6 @@
 package local.begin.LeetCode;
 
-public class Leetcode287Solution {
+public class LeetCode287Solution {
 
 
     // 快慢指针 n
