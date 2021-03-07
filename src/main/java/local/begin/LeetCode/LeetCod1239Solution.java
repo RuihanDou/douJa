@@ -44,7 +44,11 @@ public class LeetCod1239Solution {
     int maxLen = 0;
 
     public int maxLength(List<String> arr) {
-        dfs(arr, 0, 0, 0);
+
+        List<String> toRemove = new ArrayList<>();
+        arr.forEach(s -> {if(containRepeatChar(s)) toRemove.add(s);});
+        arr.removeAll(toRemove);
+        dfs1(arr, 0, "", 0);
         return maxLen;
     }
 
@@ -68,10 +72,18 @@ public class LeetCod1239Solution {
         if (tempCk != -1){
             dfs(arr, index + 1, tempCk, tempMax + str.length());
         }
+
         dfs(arr, index + 1, ck, tempMax);
     }
 
     // 比较str和之前ck代表的字符串是否有相同字符，如果没有，则把str代表的ck加去，如果有，则返回-1
+    // 使用位运算：ck & (1 << i) == 0
+    //
+    // 其中，ck是一个最少26byte的字符，从左至右，每一位分别代表a,b,,,x,y,x
+
+    // i代表字符串中的字符
+
+
     private int getCk(int ck, String str) {
 
         char[] chars = str.toCharArray();
@@ -84,6 +96,49 @@ public class LeetCod1239Solution {
         }
         return ck;
     }
+
+    private void dfs1(List<String> arr, int index, String combWord, int tempMax) {
+
+        if (index == arr.size()) {
+            maxLen = Math.max(maxLen, tempMax);
+            return;
+        }
+
+        String str = arr.get(index);
+
+        if (notEqual(combWord, str)){
+            dfs1(arr, index + 1, combWord + str, tempMax + str.length());
+        }
+
+        dfs1(arr, index + 1, combWord, tempMax);
+    }
+
+    private boolean notEqual(String a, String b) {
+        int[] charArray = new int[30];
+        for (int i = 0; i < a.length(); i ++) {
+            charArray[a.charAt(i) - 'a'] = 1;
+        }
+        for (int i = 0; i < b.length(); i ++) {
+            if (charArray[b.charAt(i) - 'a'] == 1) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean containRepeatChar(String str){
+        if(str==null||str.isEmpty()){
+            return false;
+        }
+        char[] elements=str.toCharArray();
+        for(char e:elements){
+            if(str.indexOf(e)!=str.lastIndexOf(e)){
+                return true;
+            }
+        }
+        return false;
+    }
+
 
 
     public static void main(String[] args) {
