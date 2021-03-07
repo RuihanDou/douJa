@@ -2,6 +2,7 @@ package local.begin.LeetCode;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * 1. 两数之和
@@ -28,7 +29,7 @@ public class LeetCode001Solution {
      * @return  返回的是 nums 里的序号 而非数字本身
      */
     public static int[] twoSum(int[] nums, int target) {
-        Map<Integer, Integer> targetSupple = new HashMap<>();
+        Map<Integer, Integer> targetSupple = new TreeMap<>();
         for(int i = 0; i < nums.length; i++) {
             int num = nums[i];
             if (targetSupple.containsKey(num)) {
@@ -49,7 +50,7 @@ public class LeetCode001Solution {
      * @return
      */
     public static int[] twoSumV1(int[] nums, int target) {
-        Map<Integer, Integer> numsMap = new HashMap<>();
+        Map<Integer, Integer> numsMap = new TreeMap<>();
         for(int i = 0; i < nums.length; i++) {
             numsMap.put(nums[i], i);
         }
