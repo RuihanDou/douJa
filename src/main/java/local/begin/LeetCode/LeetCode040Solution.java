@@ -45,12 +45,13 @@ import java.util.*;
 
 public class LeetCode040Solution {
 
-    List<int[]> freq = new ArrayList<int[]>();
-    List<List<Integer>> ans = new ArrayList<List<Integer>>();
-    List<Integer> sequence = new ArrayList<Integer>();
+    List<int[]> freq = new ArrayList<>();
+    List<List<Integer>> ans = new ArrayList<>();
+    List<Integer> sequence = new ArrayList<>();
 
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
         Arrays.sort(candidates);
+
         for (int num : candidates) {
             int size = freq.size();
             if (freq.isEmpty() || num != freq.get(size - 1)[0]) {
@@ -65,7 +66,7 @@ public class LeetCode040Solution {
 
     public void dfs(int pos, int rest) {
         if (rest == 0) {
-            ans.add(new ArrayList<Integer>(sequence));
+            ans.add(new ArrayList<>(sequence));
             return;
         }
         // pos == freq.size() 说明已经遍历完成
