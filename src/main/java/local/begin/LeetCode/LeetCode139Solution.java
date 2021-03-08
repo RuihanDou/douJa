@@ -1,7 +1,9 @@
 package local.begin.LeetCode;
 
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * 139. 单词拆分
@@ -27,9 +29,9 @@ import java.util.List;
  * 输入: s = "catsandog", wordDict = ["cats", "dog", "sand", "and", "cat"]
  * 输出: false
  */
-public class LeetCode130Solution {
+public class LeetCode139Solution {
 
-    public boolean wordBreak(String s, List<String> wordDict) {
+    public boolean wordBreak1(String s, List<String> wordDict) {
 
         int len = s.length();
         boolean[][] dp = new boolean[len][len];
@@ -57,5 +59,28 @@ public class LeetCode130Solution {
         }
         return dp[0][len-1];
     }
+
+    public boolean wordBreak(String s, List<String> wordDict) {
+
+        Set<String> wordDictSet = new HashSet(wordDict);
+
+        boolean[] dp = new boolean[s.length() + 1];
+
+        dp[0] = true;
+
+        for (int i = 1; i <= s.length(); i++) {
+
+            for (int j = 0; j < i; j++) {
+
+                if (dp[j] && wordDictSet.contains(s.substring(j, i))) {
+                    dp[i] = true;
+                    break;
+                }
+            }
+        }
+        return dp[s.length()];
+    }
+
+
 
 }
