@@ -44,11 +44,9 @@ public class LeetCode131Solution {
         }
 
         for(int i = n - 1; i >= 0; i--){
-
             for(int j = i + 1; j < n; j++){
                 f[i][j] = (s.charAt(j) == s.charAt(i)) && f[i+1][j-1];
             }
-
         }
         dfs(s, 0);
         return ret;
@@ -61,17 +59,12 @@ public class LeetCode131Solution {
         }
 
         for(int j = i; j < n; j++){
-
             if(f[i][j]){
-
                 ans.add(s.substring(i, j+1));
                 dfs(s, j+1);
                 ans.remove(ans.size() - 1);
-
             }
-
         }
-
     }
 
 }

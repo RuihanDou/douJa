@@ -47,11 +47,15 @@ public class LeetCode132Solution {
 
         int[] f = new int[n];
         Arrays.fill(f, Integer.MAX_VALUE);
-        for (int i = 0; i < n; ++i) {
+        for (int i = 0; i < n; i++) {
+            // 从头开始，到此位置构成回文f[i]置零
             if (g[0][i]) {
                 f[i] = 0;
             } else {
-                for (int j = 0; j < i; ++j) {
+                // 一般情况
+                for (int j = 0; j < i; j++) {
+                    // 从j+1到此位置构成回文，此位置更新为f[j] + 1
+                    // 但不保证有别的回文组合更优，所以取f[i] 和 f[j] + 1 的最小值
                     if (g[j + 1][i]) {
                         f[i] = Math.min(f[i], f[j] + 1);
                     }
