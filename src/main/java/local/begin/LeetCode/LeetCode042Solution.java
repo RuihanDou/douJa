@@ -26,7 +26,7 @@ package local.begin.LeetCode;
  * 0 <= height[i] <= 105
  */
 
-public class LeetCode42Solution {
+public class LeetCode042Solution {
 
     public int trap(int[] height) {
 
