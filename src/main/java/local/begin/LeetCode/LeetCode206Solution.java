@@ -18,6 +18,18 @@ public class LeetCode206Solution {
         return preNode;
     }
 
+    public static ListNode reverseList1(ListNode head) {
+        if(null == head || head.next == null){
+            return head;
+        }
+
+        ListNode rev = reverseList1(head.next);
+        head.next.next = head;
+        head.next = null;
+
+        return rev;
+    }
+
     public static void main(String[] args) {
         ListNode l1 = new ListNode(1);
         l1.next = new ListNode(2);

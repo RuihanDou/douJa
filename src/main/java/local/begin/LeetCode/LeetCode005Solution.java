@@ -118,7 +118,7 @@ public class LeetCode005Solution {
     }
 
     public static void main(String[] args) {
-        String rst = LeetCode005Solution.longestPalindromeV2("ccc");
+        String rst = LeetCode005Solution.longestPalindromeV1("ccc");
 
         System.out.println(rst);
     }
