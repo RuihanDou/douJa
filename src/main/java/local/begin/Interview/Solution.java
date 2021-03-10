@@ -62,7 +62,7 @@ public class Solution {
     //          LeetCode 42 接雨水，
     //          LeetCode 01 两数之和，
     //          LeetCode 287 寻找重复数，
-    //          LeetCode121 买卖股票的最佳时机
+    //          LeetCode 121 买卖股票的最佳时机
     // 本题和以上题目都有共同的特点，使用O(n)时间复杂度就可以解决
 
     public static void main(String[] args) {
