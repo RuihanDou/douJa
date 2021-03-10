@@ -62,4 +62,6 @@ public class LeetCode062Solution {
         return checkerboard[m-1][n-1];
     }
 
+    //TODO：改成用滚动数组
+
 }
