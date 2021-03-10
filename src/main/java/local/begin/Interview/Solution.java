@@ -71,6 +71,6 @@ public class Solution {
 //        int[] coinsList = new int[]{1,1,100,8,9,10};
         int rst = Solution.maxValue(coinsList);
         DebugTools.print(rst);
-
     }
+
 }
