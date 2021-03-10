@@ -58,7 +58,7 @@ public class Solution {
     }
 
     // 本题以 LeetCode 53 最大子序列和为基础
-    // 相似题目有 LeetCode 41 缺失的第一个正数，
+    // 相似题目有  LeetCode 41 缺失的第一个正数，
     //          LeetCode 42 接雨水，
     //          LeetCode 01 两数之和，
     //          LeetCode 287 寻找重复数，
