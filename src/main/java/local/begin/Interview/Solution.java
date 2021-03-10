@@ -6,6 +6,8 @@ import java.util.Arrays;
 
 
 /**
+ * Microsoft onset 1
+ *
  * 在你的面前有一列硬币，不等值也不按照价值排列，你只能每次从最左边或最右边取一枚，一共只能取硬币数量的一半
  *
  * 硬币如下列表所示 [3, 6, 2, 6, 8, 1, 3, 5]
@@ -54,6 +56,14 @@ public class Solution {
         return all - minInWindow;
 
     }
+
+    // 本题以 LeetCode 53 最大子序列和为基础
+    // 相似题目有 LeetCode 41 缺失的第一个正数，
+    //          LeetCode 42 接雨水，
+    //          LeetCode 01 两数之和，
+    //          LeetCode 287 寻找重复数，
+    //          LeetCode121 买卖股票的最佳时机
+    // 本题和以上题目都有共同的特点，使用O(n)时间复杂度就可以解决
 
     public static void main(String[] args) {
         int[] coinsList = new int[]{3,6,2,6,8,1,3,5};
