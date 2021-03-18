@@ -2,6 +2,7 @@ package local.begin.DataStructureAlgorithm.DataStruct;
 
 
 import local.begin.DataStructureAlgorithm.Interface.Stack;
+import local.begin.tools.DebugTools;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -38,6 +39,7 @@ public class QueueStack<E> implements Stack<E> {
         Queue<E> q2 = new LinkedList<>();
 
         while (q.size() > 1){
+            top = q.peek();
             q2.add(q.remove());
         }
 
@@ -48,8 +50,20 @@ public class QueueStack<E> implements Stack<E> {
 
     @Override
     public E peek() {
-        E ret = pop();
-        push(ret);
-        return ret;
+        return top;
+    }
+
+
+    public static void main(String[] args) {
+        Stack<Integer> stack = new QueueStack<>();
+        for(int i = 0; i < 5; i++){
+            stack.push(i);
+        }
+
+        for(int j = 0; j < 3; j++){
+            DebugTools.print(stack.pop());
+        }
+
+        System.out.println(stack.peek());
     }
 }
