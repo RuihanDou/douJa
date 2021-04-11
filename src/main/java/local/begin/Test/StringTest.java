@@ -6,8 +6,8 @@ import java.util.regex.Pattern;
 public class StringTest {
 
     public static String removeBlankInCharactor(String input){
-
-        return input.replaceAll("(?<=[\\x{4e00}-\\x{9fa5}])\\s(?=[\\x{4e00}-\\x{9fa5}])", "").strip();
+        // 只把汉字中的空格去除
+        return input.replaceAll("(?<=[\\x{4e00}-\\x{9fa5}])\\s(?=[\\x{4e00}-\\x{9fa5}])", "");
 
 
     }
