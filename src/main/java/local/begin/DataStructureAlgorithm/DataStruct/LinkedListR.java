@@ -177,10 +177,12 @@ public class LinkedListR<E> {
         LinkedListR<Integer> list = new LinkedListR<>();
         for(int i = 0 ; i < 10 ; i ++) {
             list.addFirst(i);
+            System.out.println(list);
         }
 
         while(!list.isEmpty()){
             System.out.println("removed " + list.removeLast());
+            System.out.println(list);
         }
     }
 
