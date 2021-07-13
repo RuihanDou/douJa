@@ -2,7 +2,7 @@ package local.begin.DataStructureAlgorithm.DataStruct;
 
 
 import local.begin.DataStructureAlgorithm.Interface.Stack;
-import local.begin.tools.DebugTools;
+import local.begin.Tools.DebugTools;
 
 import java.util.LinkedList;
 import java.util.Queue;

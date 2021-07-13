@@ -1,9 +1,8 @@
 package local.begin.LeetCode;
 
-import local.begin.tools.DebugTools;
+import local.begin.Tools.DebugTools;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**

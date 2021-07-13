@@ -1,4 +1,4 @@
-package local.begin.huawei;
+package local.begin.Huawei;
 
 import com.google.common.collect.Lists;
 

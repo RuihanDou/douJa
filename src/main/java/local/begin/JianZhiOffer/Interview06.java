@@ -1,6 +1,6 @@
 package local.begin.JianZhiOffer;
 
-import local.begin.struct.ListNode;
+import local.begin.Struct.ListNode;
 
 import java.util.ArrayDeque;
 import java.util.Arrays;

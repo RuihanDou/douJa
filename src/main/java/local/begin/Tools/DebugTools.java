@@ -1,4 +1,4 @@
-package local.begin.tools;
+package local.begin.Tools;
 
 public class DebugTools {
 

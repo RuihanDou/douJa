@@ -1,7 +1,7 @@
 package local.begin.LeetCode;
 
 
-import local.begin.struct.ListNode;
+import local.begin.Struct.ListNode;
 
 /**
  * 19. 删除链表的倒数第N个节点

@@ -1,7 +1,7 @@
 package local.begin.LeetCode;
 
 
-import local.begin.tools.DebugTools;
+import local.begin.Tools.DebugTools;
 
 /**
  * 62. 不同路径
