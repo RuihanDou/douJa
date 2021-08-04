@@ -1,9 +1,8 @@
 package local.begin.Interview;
 
-import local.begin.tools.DebugTools;
+import local.begin.Tools.DebugTools;
 
 import java.util.Arrays;
-import java.util.PriorityQueue;
 
 
 /**

@@ -1,6 +1,6 @@
 package local.begin.LeetCode;
 
-import local.begin.tools.DebugTools;
+import local.begin.Tools.DebugTools;
 
 /**
  * 125. 验证回文串

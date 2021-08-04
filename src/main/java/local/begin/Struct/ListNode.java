@@ -1,4 +1,4 @@
-package local.begin.struct;
+package local.begin.Struct;
 
 public class ListNode {
     public int val;

@@ -10,7 +10,7 @@ package local.begin.LeetCode;
  * 输出: 1->2->3->4->5
  */
 
-import local.begin.struct.ListNode;
+import local.begin.Struct.ListNode;
 
 /**
  * Definition for singly-linked list.

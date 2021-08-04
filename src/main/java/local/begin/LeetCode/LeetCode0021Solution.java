@@ -1,6 +1,6 @@
 package local.begin.LeetCode;
 
-import local.begin.struct.ListNode;
+import local.begin.Struct.ListNode;
 
 /**
  *
