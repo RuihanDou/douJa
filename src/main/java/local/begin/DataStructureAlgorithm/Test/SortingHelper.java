@@ -1,6 +1,7 @@
 package local.begin.DataStructureAlgorithm.Test;
 
 import local.begin.DataStructureAlgorithm.Alogo.InsertionSort;
+import local.begin.DataStructureAlgorithm.Alogo.MergeSort;
 import local.begin.DataStructureAlgorithm.Alogo.SelectionSort;
 
 public class SortingHelper {
@@ -32,6 +33,8 @@ public class SortingHelper {
             InsertionSort.sort2(arr);
         } else if(sortname.equals("InsertionSortExchange1")){
             InsertionSort.sort1(arr);
+        } else if(sortname.equals("MergeSort")){
+            MergeSort.sort(arr);
         }
 
         long endTime = System.nanoTime();
