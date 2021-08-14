@@ -59,6 +59,22 @@ public class InsertionSort {
         }
     }
 
+    public static <E extends Comparable<E>> void sort(E[] arr, int l, int r){
+
+        // i可以从第二个元素开始遍历
+        for (int i = l; i <= r; i++) {
+
+            // 将 arr[i] 插入到合适的位置
+            E t = arr[i];
+            int j;
+            for (j = i; j - 1 >= l && t.compareTo(arr[j - 1]) < 0; j--){
+                arr[j] = arr[j - 1];
+            }
+            arr[j] = t;
+
+        }
+    }
+
     public static <E extends Comparable<E>> void sort0(E[] arr){
 
         // i可以从第二个元素开始遍历
