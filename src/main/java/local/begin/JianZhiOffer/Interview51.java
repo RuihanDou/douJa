@@ -22,33 +22,31 @@ import java.util.Arrays;
  */
 public class Interview51 {
 
-    private int res = 0;
-
     public int reversePairs(int[] nums) {
-        res = 0;
         int[] temp = Arrays.copyOf(nums, nums.length);
-        sort(nums, 0, nums.length - 1, temp);
-        return res;
+        return sort(nums, 0, nums.length - 1, temp);
     }
 
     // 归并排序
-    private void sort(int[] arr, int l, int r, int[] temp){
+    private int sort(int[] arr, int l, int r, int[] temp){
 
         if(r <= l){
-            return;
+            return 0;
         }
+        int res = 0;
         int mid = l + (r - l) / 2;
-        sort(arr, l, mid, temp);
-        sort(arr, mid + 1, r, temp);
+        res += sort(arr, l, mid, temp);
+        res += sort(arr, mid + 1, r, temp);
         if(arr[mid] > arr[mid + 1]){
-            merge(arr, l, mid, r, temp);
+           res += merge(arr, l, mid, r, temp);
         }
+        return res;
     }
 
     // 合并有序区间 arr[l, mid] 和 arr[mid+1, r]
-    private void merge(int[] arr, int l, int mid, int r, int[] temp) {
+    private int merge(int[] arr, int l, int mid, int r, int[] temp) {
         System.arraycopy(arr, l, temp, l, r - l + 1);
-        int i = l, j = mid + 1;
+        int i = l, j = mid + 1, res = 0;
         for (int k = l; k <= r; k++) {
             if (i > mid) {
                 arr[k] = temp[j];
@@ -65,6 +63,7 @@ public class Interview51 {
                 j++;
             }
         }
+        return res;
     }
 
 }
