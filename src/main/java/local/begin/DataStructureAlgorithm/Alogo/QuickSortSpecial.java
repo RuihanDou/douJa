@@ -11,6 +11,8 @@ import java.util.Arrays;
  */
 public class QuickSortSpecial {
 
+    private QuickSortSpecial(){}
+
     private static <E> void swap(E[] arr, int i, int j) {
         E tmp = arr[i];
         arr[i] = arr[j];
