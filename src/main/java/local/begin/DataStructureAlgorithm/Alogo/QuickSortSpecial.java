@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 /**
  * 本类探索，如果快排 partition 每次取标定点都是数组区间的中点会造成什么样的算法退化
- *
+ * 需要更改 jvm 默认设定 为-Xss128m
  */
 public class QuickSortSpecial {
 
