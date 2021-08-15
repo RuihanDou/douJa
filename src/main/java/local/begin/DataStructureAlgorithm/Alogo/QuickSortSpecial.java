@@ -85,6 +85,8 @@ public class QuickSortSpecial {
 
     public static void main(String[] args){
 
+        System.out.println(Arrays.toString(generateSpecialArray(8)));
+
         int n = 100000;
 
         Integer[] arr = ArrayGenerator.generateRandomArray(n, n);

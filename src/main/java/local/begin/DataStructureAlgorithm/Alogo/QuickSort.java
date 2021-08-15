@@ -51,18 +51,15 @@ public class QuickSort   {
     }
 
     public static void main(String[] args) {
-        int n = 500000;
+        int n = 100000;
         Integer[] arr = ArrayGenerator.generateRandomArray(n, n);
-        Integer[] arr2 = Arrays.copyOf(arr, arr.length);
-
-        SortingHelper.sortTest("MergeSort", arr);
-        SortingHelper.sortTest("QuickSort", arr2);
+        SortingHelper.sortTest("QuickSort", arr);
 
         arr = ArrayGenerator.generateOrderedArray(n);
-        arr2 = Arrays.copyOf(arr, arr.length);
+        SortingHelper.sortTest("QuickSort", arr);
 
-        SortingHelper.sortTest("MergeSort", arr);
-        SortingHelper.sortTest("QuickSort", arr2);
+        arr = ArrayGenerator.generateRandomArray(n, 1);
+        SortingHelper.sortTest("QuickSort", arr);
     }
 
 }
