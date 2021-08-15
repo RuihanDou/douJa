@@ -1,8 +1,6 @@
 package local.begin.DataStructureAlgorithm.Test;
 
-import local.begin.DataStructureAlgorithm.Alogo.InsertionSort;
-import local.begin.DataStructureAlgorithm.Alogo.MergeSort;
-import local.begin.DataStructureAlgorithm.Alogo.SelectionSort;
+import local.begin.DataStructureAlgorithm.Alogo.*;
 
 public class SortingHelper {
 
@@ -37,6 +35,10 @@ public class SortingHelper {
             MergeSort.sort(arr);
         } else if(sortname.equals("MergeSortBU")){
             MergeSort.sortBU(arr);
+        } else if(sortname.equals("QuickSort")){
+            QuickSort.sort(arr);
+        } else if(sortname.equals("QuickSort2")){
+            QuickSortSpecial.sort2(arr);
         }
 
         long endTime = System.nanoTime();
