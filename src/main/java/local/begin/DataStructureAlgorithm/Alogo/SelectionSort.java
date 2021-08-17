@@ -9,6 +9,10 @@ public class SelectionSort {
 
     private SelectionSort(){}
 
+    public static String getName(){
+        return "Selection Sort";
+    }
+
     private static <E> void swap(E[] arr, int i, int j) {
         E tmp = arr[i];
         arr[i] = arr[j];
@@ -29,7 +33,12 @@ public class SelectionSort {
         }
     }
 
-    public static <E extends Comparable<E>> void sort2(E[] arr) {
+    /**
+     * R2L 方法循环都从索引大的开始， 计算复杂度没有变化
+     * @param arr
+     * @param <E>
+     */
+    public static <E extends Comparable<E>> void sortR2L(E[] arr) {
 
         for(int i = arr.length - 1; i > 0; i--){
             // 选取arr中最大值的索引

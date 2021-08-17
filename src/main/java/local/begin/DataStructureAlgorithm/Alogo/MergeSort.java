@@ -9,6 +9,10 @@ public class MergeSort {
 
     private MergeSort(){}
 
+    public static String getName(){
+        return "Merge Sort";
+    }
+
     public static <E extends Comparable<E>> void sort(E[] arr){
         E[] temp = Arrays.copyOf(arr, arr.length);
         sort(arr, 0, arr.length - 1, temp);
@@ -16,8 +20,7 @@ public class MergeSort {
 
     private static <E extends Comparable<E>> void sort(E[] arr, int l, int r, E[] temp){
 
-        if(r - l <= 15){
-            InsertionSort.sort(arr, l, r);
+        if(l >= r){
             return;
         }
         int mid = l + (r - l) / 2;

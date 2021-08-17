@@ -9,38 +9,8 @@ public class InsertionSort {
 
     private  InsertionSort(){}
 
-    private static <E> void swap(E[] arr, int i, int j) {
-        E tmp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = tmp;
-    }
-
-    public static <E extends Comparable<E>> void sort1(E[] arr){
-
-        for(int i = 0; i < arr.length; i++) {
-
-            // 将 arr[i] 插入到合适的位置
-            for(int j = i; j - 1 >= 0; j--) {
-                if(arr[j].compareTo(arr[j-1]) < 0){
-                    swap(arr, j, j-1);
-                }
-                else break;
-            }
-        }
-    }
-
-    // 省略循环
-    public static <E extends Comparable<E>> void sort2(E[] arr){
-
-        for(int i = 0; i < arr.length; i++) {
-
-            // 将 arr[i] 插入到合适的位置
-            for(int j = i; j - 1 >= 0 && arr[j].compareTo(arr[j-1]) < 0; j--) {
-
-                swap(arr, j, j-1);
-
-            }
-        }
+    public static String getName(){
+        return "Insertion Sort";
     }
 
     public static <E extends Comparable<E>> void sort(E[] arr){
@@ -59,6 +29,13 @@ public class InsertionSort {
         }
     }
 
+    /**
+     * 为高级排序算法优化（小区间排序）提供方法
+     * @param arr
+     * @param l
+     * @param r
+     * @param <E>
+     */
     public static <E extends Comparable<E>> void sort(E[] arr, int l, int r){
 
         // i可以从第二个元素开始遍历
@@ -75,7 +52,12 @@ public class InsertionSort {
         }
     }
 
-    public static <E extends Comparable<E>> void sort0(E[] arr){
+    /**
+     * R2L 方法循环都从索引大的开始， 计算复杂度没有变化
+     * @param arr
+     * @param <E>
+     */
+    public static <E extends Comparable<E>> void sortR2L(E[] arr){
 
         // i可以从第二个元素开始遍历
         for (int i = arr.length - 2; i >= 0; i--) {
@@ -88,33 +70,6 @@ public class InsertionSort {
             }
             arr[j] = t;
         }
-
     }
 
-    public static void main(String[] args) {
-        int[] dataSize = {10000, 100000};
-        for (int n : dataSize) {
-
-            System.out.println("Random Array : ");
-
-            Integer[] arr = ArrayGenerator.generateRandomArray(n, n);
-            Integer[] arr2 = Arrays.copyOf(arr, arr.length);
-
-            SortingHelper.sortTest("InsertionSort", arr);
-            SortingHelper.sortTest("SelectionSort", arr2);
-
-            System.out.println();
-            System.out.println("Ordered Array : ");
-            arr = ArrayGenerator.generateOrderedArray(n);
-            arr2 = Arrays.copyOf(arr, arr.length);
-
-            SortingHelper.sortTest("InsertionSort", arr);
-            SortingHelper.sortTest("SelectionSort", arr2);
-
-            System.out.println();
-        }
-
-
-
-    }
 }

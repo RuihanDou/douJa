@@ -21,29 +21,7 @@ public class SortingHelper {
     public static <E extends Comparable<E>> void sortTest(String sortname, E[] arr){
         long startTime = System.nanoTime();
 
-        if(sortname.equals("SelectionSort")){
-            SelectionSort.sort(arr);
-        } else if(sortname.equals("SelectionSort2")){
-            SelectionSort.sort2(arr);
-        } else if(sortname.equals("InsertionSort")){
-            InsertionSort.sort0(arr);
-        } else if(sortname.equals("InsertionSortExchange")){
-            InsertionSort.sort2(arr);
-        } else if(sortname.equals("InsertionSortExchange1")){
-            InsertionSort.sort1(arr);
-        } else if(sortname.equals("MergeSort")){
-            MergeSort.sort(arr);
-        } else if(sortname.equals("MergeSortBU")){
-            MergeSort.sortBU(arr);
-        } else if(sortname.equals("QuickSort")){
-            QuickSort.sort(arr);
-        } else if(sortname.equals("QuickSort2")){
-            QuickSortSpecial.sort2(arr);
-        } else if(sortname.equals("QuickSort2Ways")){
-            QuickSort.sort2(arr);
-        } else if(sortname.equals("QuickSort3Ways")){
-            QuickSort.sort3(arr);
-        }
+        // TODO: 改变选择排序的方法
 
         long endTime = System.nanoTime();
 

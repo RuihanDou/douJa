@@ -6,26 +6,12 @@ import local.begin.DataStructureAlgorithm.Test.SortingHelper;
 import java.util.Arrays;
 import java.util.Random;
 
-public class QuickSort   {
+public class QuickSort1Way {
 
-    private  QuickSort(){}
+    private QuickSort1Way(){}
 
-    public static <E extends Comparable<E>> void sort2(E[] arr){
-        Random rnd = new Random();
-        sort2(arr, 0, arr.length - 1, rnd);
-    }
-
-    private static <E extends Comparable<E>> void sort2(E[] arr, int l, int r, Random rnd){
-        if(l >= r) {
-            return;
-        }
-//        if(r - l <= 15){
-//            InsertionSort.sort(arr, l, r);
-//            return;
-//        }
-        int p = partition2(arr, l, r, rnd);
-        sort2(arr, l, p - 1, rnd);
-        sort2(arr, p + 1, r, rnd);
+    public static String getName(){
+        return "Quick Sort 1 Way";
     }
 
     public static <E extends Comparable<E>> void sort(E[] arr){
@@ -61,71 +47,7 @@ public class QuickSort   {
         swap(arr, l, j);
         return j;
     }
-
-    private static <E extends Comparable<E>> int partition2(E[] arr, int l, int r, Random rnd){
-        // 生成 [l, r] 之间的随机索引
-        int p = l + rnd.nextInt(r - l + 1);
-        swap(arr, l, p);
-
-        // arr[l+1 ... i-1] <= v; arr[j+1 ... r] >= v
-        int i = l + 1, j = r;
-        while (true){
-            while (i <= j && arr[i].compareTo(arr[l]) < 0){
-                i++;
-            }
-            while (j >= i && arr[j].compareTo(arr[l]) > 0){
-                j--;
-            }
-
-            if(i >= j){
-                break;
-            }
-
-            swap(arr, i, j);
-            i++;
-            j--;
-        }
-        swap(arr, l, j);
-        return j;
-    }
-
-    public static <E extends Comparable<E>> void sort3(E[] arr){
-        Random rnd = new Random();
-        sort3(arr, 0, arr.length - 1, rnd);
-    }
-
-    private static <E extends Comparable<E>> void sort3(E[] arr, int l, int r, Random rnd){
-        if(l >= r) {
-            return;
-        }
-        // 生成 [l, r] 之间的随机索引
-        int p = l + rnd.nextInt(r - l + 1);
-        swap(arr, l, p);
-
-        // arr[l+1 ... lt] < v, arr[lt+1 ... i-1] == v, arr[gt, r] > v
-        int lt = l, i = l + 1, gt = r + 1;
-        while (i < gt){
-            if(arr[i].compareTo(arr[l]) < 0){
-                lt++;
-                swap(arr, i, lt);
-                i++;
-            }
-            else if(arr[i].compareTo(arr[l]) > 0){
-                gt--;
-                swap(arr, i, gt);
-            }
-            else {
-                i++;
-            }
-        }
-        swap(arr, l, lt);
-        // arr[l ... lt-1] < v, arr[lt ... i-1] == v, arr[gt, r] > v
-        sort3(arr, l, lt - 1, rnd);
-        sort3(arr, gt, r, rnd);
-    }
-
-
-
+    
     private static <E> void swap(E[] arr, int i, int j) {
         E tmp = arr[i];
         arr[i] = arr[j];
