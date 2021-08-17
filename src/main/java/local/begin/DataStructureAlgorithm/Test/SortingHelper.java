@@ -1,6 +1,7 @@
 package local.begin.DataStructureAlgorithm.Test;
 
 import local.begin.DataStructureAlgorithm.Alogo.*;
+import local.begin.DataStructureAlgorithm.Interface.Sort;
 
 public class SortingHelper {
 
@@ -17,21 +18,21 @@ public class SortingHelper {
 
         return true;
     }
-
-    public static <E extends Comparable<E>> void sortTest(String sortname, E[] arr){
-        long startTime = System.nanoTime();
-
-        // TODO: 改变选择排序的方法
-
-        long endTime = System.nanoTime();
-
-        double time = (endTime - startTime) / 1000000000.0;
-
-        if(!SortingHelper.isSorted(arr)){
-            throw new RuntimeException(sortname + " failed");
-        }
-
-        System.out.println(String.format("%s , n = %d : %f s", sortname, arr.length, time));
-    }
+//
+//    public static <E extends Comparable<E>> void sortTest(Sort sort, E[] arr){
+//        long startTime = System.nanoTime();
+//
+//        // TODO: 改变选择排序的方法
+//
+//        long endTime = System.nanoTime();
+//        sort.sort(arr);
+//        double time = (endTime - startTime) / 1000000000.0;
+//
+//        if(!SortingHelper.isSorted(arr)){
+//            throw new RuntimeException(sort.getName() + " failed");
+//        }
+//
+//        System.out.println(String.format("%s , n = %d : %f s", sort.getName(), arr.length, time));
+//    }
 
 }

@@ -1,5 +1,6 @@
 package local.begin.DataStructureAlgorithm.Alogo;
 
+import local.begin.DataStructureAlgorithm.Interface.Sort;
 import local.begin.DataStructureAlgorithm.Struct.ArrayGenerator;
 import local.begin.DataStructureAlgorithm.Test.SortingHelper;
 
