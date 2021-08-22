@@ -1,8 +1,10 @@
 package local.begin.DataStructureAlgorithm.Alogo;
 
+import local.begin.DataStructureAlgorithm.Interface.Sort;
+
 import java.util.Arrays;
 
-public class MergeSortBUInsertionOpt {
+public class MergeSortBUInsertionOpt implements Sort {
 
     private MergeSortBUInsertionOpt(){}
 

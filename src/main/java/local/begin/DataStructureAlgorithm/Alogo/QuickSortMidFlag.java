@@ -1,8 +1,10 @@
 package local.begin.DataStructureAlgorithm.Alogo;
 
+import local.begin.DataStructureAlgorithm.Interface.Sort;
+
 import java.util.Random;
 
-public class QuickSortMidFlag {
+public class QuickSortMidFlag implements Sort {
 
     private QuickSortMidFlag(){}
 

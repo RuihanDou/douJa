@@ -1,11 +1,10 @@
 package local.begin.DataStructureAlgorithm.Alogo;
 
-import local.begin.DataStructureAlgorithm.Struct.ArrayGenerator;
-import local.begin.DataStructureAlgorithm.Test.SortingHelper;
+import local.begin.DataStructureAlgorithm.Interface.Sort;
 
 import java.util.Arrays;
 
-public class MergeSort {
+public class MergeSort implements Sort {
 
     private MergeSort(){}
 
@@ -75,9 +74,4 @@ public class MergeSort {
         }
     }
 
-    public static void main(String[] args) {
-        int n = 100000;
-        Integer[] arr = ArrayGenerator.generateRandomArray(n, n);
-        SortingHelper.sortTest("MergeSortBU", arr);
-    }
 }

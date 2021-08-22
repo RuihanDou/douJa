@@ -1,10 +1,5 @@
 package local.begin.DataStructureAlgorithm.Alogo;
 
-import local.begin.DataStructureAlgorithm.Struct.ArrayGenerator;
-import local.begin.DataStructureAlgorithm.Test.SortingHelper;
-
-import java.util.Arrays;
-
 public class SelectionSort {
 
     private SelectionSort(){}
@@ -51,17 +46,5 @@ public class SelectionSort {
             swap(arr, i, maxIndex);
         }
     }
-
-    public static void main(String[] args) {
-        int[] dataSize = {10000, 100000};
-        for (int n : dataSize) {
-            Integer[] arr = ArrayGenerator.generateRandomArray(n, n);
-            Integer[] arr2 = Arrays.copyOf(arr, arr.length);
-
-            SortingHelper.sortTest("SelectionSort2", arr);
-            SortingHelper.sortTest("SelectionSort", arr2);
-        }
-    }
-
 
 }

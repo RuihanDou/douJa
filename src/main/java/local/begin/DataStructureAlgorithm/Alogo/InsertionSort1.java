@@ -1,9 +1,11 @@
 package local.begin.DataStructureAlgorithm.Alogo;
 
+import local.begin.DataStructureAlgorithm.Interface.Sort;
+
 /**
  * 通过swap相邻交换的方式实现插入排序
  */
-public class InsertionSort1 {
+public class InsertionSort1 implements Sort {
 
     private InsertionSort1(){}
 

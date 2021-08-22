@@ -1,8 +1,14 @@
 package local.begin.DataStructureAlgorithm.Alogo;
 
+import local.begin.DataStructureAlgorithm.Helper.SortingHelper;
+import local.begin.DataStructureAlgorithm.Interface.Sort;
+import local.begin.DataStructureAlgorithm.Struct.ArrayGenerator;
+import local.begin.DataStructureAlgorithm.Alogo.QuickSort2Ways;
+
+import java.util.Arrays;
 import java.util.Random;
 
-public class QuickSort3WaysInsertionOpt {
+public class QuickSort3WaysInsertionOpt implements Sort {
 
     private QuickSort3WaysInsertionOpt(){}
 
@@ -53,4 +59,13 @@ public class QuickSort3WaysInsertionOpt {
         arr[j] = tmp;
     }
 
+    public static void main(String[] args) {
+        int n = 100000;
+
+        Integer[] arr = ArrayGenerator.generateRandomArray(n, n);
+        Integer[] arr2 = Arrays.copyOf(arr, arr.length);
+
+        System.out.println("Random Array");
+
+    }
 }

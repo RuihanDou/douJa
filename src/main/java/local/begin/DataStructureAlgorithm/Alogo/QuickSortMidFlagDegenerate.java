@@ -1,5 +1,7 @@
 package local.begin.DataStructureAlgorithm.Alogo;
 
+import local.begin.DataStructureAlgorithm.Interface.Sort;
+
 /**
  * 本类探索，如果快排 partition 每次取标定点都是数组区间的中点会造成什么样的算法退化
  * 需要更改 jvm 默认设定 为-Xss128m
@@ -13,7 +15,7 @@ package local.begin.DataStructureAlgorithm.Alogo;
  * 本类中 generateSpecialArray(n) 方法为生成退化数组的方法
  *
  */
-public class QuickSortMidFlagDegenerate {
+public class QuickSortMidFlagDegenerate implements Sort  {
 
     private QuickSortMidFlagDegenerate(){}
 

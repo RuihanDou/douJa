@@ -1,14 +1,13 @@
 package local.begin.DataStructureAlgorithm.Alogo;
 
-import local.begin.DataStructureAlgorithm.Struct.ArrayGenerator;
-import local.begin.DataStructureAlgorithm.Test.SortingHelper;
+import local.begin.DataStructureAlgorithm.Interface.Sort;
 
 import java.util.Arrays;
 
 /**
  * 自底向上的归并排序算法
  */
-public class MergeSortBU {
+public class MergeSortBU implements Sort {
 
     private MergeSortBU(){}
 
@@ -50,10 +49,4 @@ public class MergeSortBU {
         }
     }
 
-    public static void main(String[] args) {
-        int n = 100000;
-        Integer[] arr = ArrayGenerator.generateRandomArray(n, n);
-
-        SortingHelper.sortTest("MergeSOrtBUR", arr);
-    }
 }

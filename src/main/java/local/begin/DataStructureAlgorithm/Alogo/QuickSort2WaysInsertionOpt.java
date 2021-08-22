@@ -1,8 +1,10 @@
 package local.begin.DataStructureAlgorithm.Alogo;
 
+import local.begin.DataStructureAlgorithm.Interface.Sort;
+
 import java.util.Random;
 
-public class QuickSort2WaysInsertionOpt {
+public class QuickSort2WaysInsertionOpt implements Sort {
 
     private QuickSort2WaysInsertionOpt(){}
 
