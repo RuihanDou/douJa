@@ -19,10 +19,10 @@ public class QuickSort3WaysInsertionOpt implements Sort {
 
     public static <E extends Comparable<E>> void sort3(E[] arr){
         Random rnd = new Random();
-        sort3(arr, 0, arr.length - 1, rnd);
+        sort(arr, 0, arr.length - 1, rnd);
     }
 
-    private static <E extends Comparable<E>> void sort3(E[] arr, int l, int r, Random rnd){
+    private static <E extends Comparable<E>> void sort(E[] arr, int l, int r, Random rnd){
         if(r - l <= 15){
             InsertionSort.sort(arr, l, r);
             return;
@@ -50,8 +50,8 @@ public class QuickSort3WaysInsertionOpt implements Sort {
         }
         swap(arr, l, lt);
         // arr[l ... lt-1] < v, arr[lt ... i-1] == v, arr[gt, r] > v
-        sort3(arr, l, lt - 1, rnd);
-        sort3(arr, gt, r, rnd);
+        sort(arr, l, lt - 1, rnd);
+        sort(arr, gt, r, rnd);
     }
 
     private static <E> void swap(E[] arr, int i, int j) {
