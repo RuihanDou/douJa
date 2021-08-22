@@ -1,3 +1,4 @@
+
 package local.begin.DataStructureAlgorithm.Alogo;
 
 import local.begin.DataStructureAlgorithm.Helper.SortingHelper;
@@ -59,13 +60,4 @@ public class QuickSort3WaysInsertionOpt implements Sort {
         arr[j] = tmp;
     }
 
-    public static void main(String[] args) {
-        int n = 100000;
-
-        Integer[] arr = ArrayGenerator.generateRandomArray(n, n);
-        Integer[] arr2 = Arrays.copyOf(arr, arr.length);
-
-        System.out.println("Random Array");
-
-    }
 }
