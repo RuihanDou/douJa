@@ -1,10 +1,12 @@
 package local.begin.DataStructureAlgorithm.Alogo;
 
+import local.begin.DataStructureAlgorithm.Helper.ArrayGenerator;
+import local.begin.DataStructureAlgorithm.Helper.SortingHelper;
 import local.begin.DataStructureAlgorithm.Interface.Sort;
 
 public class InsertionSort implements Sort {
 
-    private  InsertionSort(){}
+    private InsertionSort(){}
 
     public static String getName(){
         return "Insertion Sort";
@@ -69,5 +71,11 @@ public class InsertionSort implements Sort {
         }
     }
 
+    public static void main(String[] args) {
+        int n = 10000;
+        Integer[] arr = ArrayGenerator.generateRandomArray(n, n);
+
+        SortingHelper.sortTest(InsertionSort.getName(), arr);
+    }
 
 }

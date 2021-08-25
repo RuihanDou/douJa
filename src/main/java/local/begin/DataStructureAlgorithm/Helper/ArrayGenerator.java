@@ -1,4 +1,4 @@
-package local.begin.DataStructureAlgorithm.Struct;
+package local.begin.DataStructureAlgorithm.Helper;
 
 import java.util.Random;
 
