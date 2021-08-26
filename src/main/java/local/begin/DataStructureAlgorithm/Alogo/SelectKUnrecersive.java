@@ -1,11 +1,10 @@
 package local.begin.DataStructureAlgorithm.Alogo;
 
-import local.begin.Tools.DebugTools;
-
 import java.util.Random;
 
-public class SelectK {
-    private SelectK(){}
+public class SelectKUnrecersive {
+
+    private SelectKUnrecersive(){}
 
     private static void swap(int[] arr, int i, int j){
 
@@ -40,24 +39,24 @@ public class SelectK {
         return j;
     }
 
-    private static int selectK(int[] arr, int l, int r, int k, Random rnd){
-
-        int p = partition(arr, l, r, rnd);
-
-        if(k == p) return arr[p];
-
-        if(k < p) return selectK(arr, l, p - 1, k, rnd);
-        return selectK(arr, p + 1, r, k, rnd);
-    }
-
     public static int selectK(int[] arr, int k){
         Random rnd = new Random();
-        return selectK(arr, 0, arr.length - 1, k, rnd);
+
+        int l = 0, r = arr.length - 1;
+        while (l <= r) {
+            int p = partition(arr, l, r, rnd);
+
+            if(k == p){
+                return arr[p];
+            }
+
+            if(k < p){
+                r = p - 1;
+            } else { // k > p
+                l = p + 1;
+            }
+        }
+        throw new RuntimeException("No solution");
     }
 
-
-    public static void main(String[] args) {
-        int[] nums = new int[]{10,9,8,7,6,5,4,3,2,1};
-        DebugTools.print(SelectK.selectK(nums, 3));
-    }
 }

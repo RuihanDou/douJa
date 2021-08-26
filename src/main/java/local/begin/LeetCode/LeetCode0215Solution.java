@@ -29,10 +29,29 @@ import java.util.Random;
 public class LeetCode0215Solution {
     public int findKthLargest(int[] nums, int k) {
         Random rnd = new Random();
-        return selectK(nums, 0, nums.length - 1, nums.length - k, rnd);
+//        return selectK(nums, 0, nums.length - 1, nums.length - k, rnd);
+        return selectK(nums, nums.length - k, rnd);
     }
 
-    private int selectK(int[] arr, int l, int r, int k, Random rnd){
+    private int selectK(int[] arr, int k, Random rnd){
+        int l = 0, r = arr.length - 1;
+        while (l <= r){
+            int p = partition(arr, l, r, rnd);
+
+            if(p == k){
+                return arr[p];
+            }
+
+            if(k < p){
+                r = p - 1;
+            } else {
+                l = p + 1;
+            }
+        }
+        throw new RuntimeException("No Solution");
+    }
+
+    private int selectKR(int[] arr, int l, int r, int k, Random rnd){
 
         int p = partition(arr, l, r, rnd);
 
@@ -41,10 +60,10 @@ public class LeetCode0215Solution {
         }
 
         if(k < p){
-            return selectK(arr, l, p - 1, k, rnd);
+            return selectKR(arr, l, p - 1, k, rnd);
         }
 
-        return selectK(arr, p + 1, r, k, rnd);
+        return selectKR(arr, p + 1, r, k, rnd);
     }
 
     private int partition(int[] arr, int l, int r, Random rnd){
