@@ -51,6 +51,7 @@ public class LeetCode0704Solution {
     public static int search1(int[] data, int target) {
         int l = 0, r = data.length - 1;
 
+        // 在 data[l, r] 的范围寻找target
         while (l <= r){
             int mid = l + (r - l) / 2;
             if(data[mid] == target){
