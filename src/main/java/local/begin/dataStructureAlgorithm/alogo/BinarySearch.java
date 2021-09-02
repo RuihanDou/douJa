@@ -140,4 +140,26 @@ public class BinarySearch {
         System.out.println();
     }
 
+    // 使用求解 >= target 的最小值索引的思路，实现 search
+    // 在有序数组 data 中判断 target 是否存在，存在则返回相应索引，不存在则返回 -1
+    public static <E extends Comparable<E>> int search2(E[] data, E target){
+
+        int l = 0, r = data.length;
+
+        while (l < r){
+            int mid = l + (r - l) / 2;
+            if(data[mid].compareTo(target) < 0){
+                l = mid + 1;
+            } else {
+                r = mid;
+            }
+        }
+
+        if(l < data.length && data[l].compareTo(target) == 0){
+            return l;
+        } else {
+            return -1;
+        }
+    }
+
 }
