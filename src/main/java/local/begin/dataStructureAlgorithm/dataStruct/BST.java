@@ -138,5 +138,67 @@ public class BST  <E extends Comparable<E>>{
         }
     }
 
+    // 二分搜索树的前序遍历
+    public void preOrder(){
+        preOrder(root);
+    }
+
+    // 前序遍历以node为根的二分搜索树，递归算法
+    private void preOrder(Node node) {
+        if(node == null) {
+            return;
+        }
+        System.out.println(node.e);
+        preOrder(node.left);
+        preOrder(node.right);
+    }
+
+    @Override
+    public String toString(){
+        StringBuilder res = new StringBuilder();
+        generateBSTString(root, 0, res);
+        return res.toString();
+    }
+
+    private void generateBSTString(Node node, int depth, StringBuilder res) {
+
+        if(node == null){
+            res.append(generateDepthString(depth) +"null\n");
+            return;
+        }
+
+        res.append(generateDepthString(depth) + node.e + "\n");
+        generateBSTString(node.left, depth + 1, res);
+        generateBSTString(node.right, depth + 1, res);
+
+    }
+
+    private String generateDepthString(int depth) {
+
+        StringBuilder res = new StringBuilder();
+        for(int i = 0; i < depth; i++){
+            res.append("--");
+        }
+        return res.toString();
+    }
+
+    public static void main(String[] args) {
+        BST<Integer> bst = new BST<>();
+        int[] nums = new int[]{5,3,6,8,4,2};
+        for (int num : nums){
+            bst.add(num);
+        }
+        /////////////////
+        //      5      //
+        //    /   \    //
+        //   3    6    //
+        //  / \    \   //
+        // 2  4     8  //
+        /////////////////
+        bst.preOrder();
+        System.out.println();
+        System.out.println(bst);
+
+    }
 
 }
