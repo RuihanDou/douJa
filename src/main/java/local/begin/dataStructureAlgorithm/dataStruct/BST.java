@@ -219,6 +219,7 @@ public class BST  <E extends Comparable<E>>{
         for (int num : nums){
             bst.add(num);
         }
+
         /////////////////
         //      5      //
         //    /   \    //
@@ -226,6 +227,7 @@ public class BST  <E extends Comparable<E>>{
         //  / \    \   //
         // 2  4     8  //
         /////////////////
+
         bst.preOrder();
         System.out.println();
         bst.inOrder();
@@ -233,7 +235,6 @@ public class BST  <E extends Comparable<E>>{
         bst.postOrder();
         System.out.println();
         System.out.println(bst);
-
     }
 
 }
