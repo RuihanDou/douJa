@@ -1,4 +1,7 @@
 package local.begin.dataStructureAlgorithm.dataStruct;
+import java.util.LinkedList;
+import java.util.Stack;
+import java.util.Queue;
 
 /**
  * 二分搜索树 Binary Search Tree
@@ -184,6 +187,42 @@ public class BST  <E extends Comparable<E>>{
         System.out.println(node.e);
     }
 
+    // 二分搜索树的非递归前序遍历
+    public void preOrderNR(){
+
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()){
+            Node cur = stack.pop();
+            System.out.println(cur.e);
+
+            if(cur.right != null){
+                stack.push(cur.right);
+            }
+            if(cur.left != null){
+                stack.push(cur.left);
+            }
+        }
+
+    }
+
+    // 二分搜索树的层序遍历
+    public void levelOrder(){
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
+        while (!q.isEmpty()){
+            Node cur = q.remove();
+            System.out.println(cur.e);
+            if(cur.left != null){
+                q.add(cur.left);
+            }
+            if(cur.right != null){
+                q.add(cur.right);
+            }
+        }
+    }
+
+
     @Override
     public String toString(){
         StringBuilder res = new StringBuilder();
@@ -230,9 +269,13 @@ public class BST  <E extends Comparable<E>>{
 
         bst.preOrder();
         System.out.println();
+        bst.preOrderNR();
+        System.out.println();
         bst.inOrder();
         System.out.println();
         bst.postOrder();
+        System.out.println();
+        bst.levelOrder();
         System.out.println();
         System.out.println(bst);
     }
