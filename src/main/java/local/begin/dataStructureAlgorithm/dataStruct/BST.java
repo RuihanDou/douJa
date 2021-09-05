@@ -37,12 +37,7 @@ public class BST  <E extends Comparable<E>>{
         return size == 0;
     }
 
-    // 向二分搜索树添加新的元素e
-    public void add(E e){
-        root = add(root, e);
-    }
-
-//    // 向以node为根的二分搜索树中插入元素e，递归算法
+    //    // 向以node为根的二分搜索树中插入元素e，递归算法
 //    private void add(Node node, E e){
 //        if(e.equals(node.e)){
 //            return;
@@ -62,6 +57,11 @@ public class BST  <E extends Comparable<E>>{
 //            add(node.right, e);
 //        }
 //    }
+
+    // 向二分搜索树添加新的元素e
+    public void add(E e){
+        root = add(root, e);
+    }
 
     // 向以node为根的二分搜索树中插入元素e，递归算法
     // 返回插入新节点后后二分搜索树的根
@@ -328,7 +328,7 @@ public class BST  <E extends Comparable<E>>{
             // 待删除的节点左右子树均不为空的情况
             // 找到比待删除节点大的最小节点，即待删除节点右子树的最小节点
             // 用这个节点顶替待删除节点的位置
-            Node successor = maximum(node.right);
+            Node successor = minimum(node.right);
             successor.right = removeMin(node.right);
             successor.left = node.left;
 
