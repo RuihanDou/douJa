@@ -4,7 +4,6 @@ import local.begin.dataStructureAlgorithm.dataStruct.BSTSet;
 import local.begin.dataStructureAlgorithm.helper.FileOperation;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class SetMain {
 
