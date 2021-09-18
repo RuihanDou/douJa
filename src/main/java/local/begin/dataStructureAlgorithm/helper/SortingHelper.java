@@ -51,7 +51,10 @@ public class SortingHelper {
             QuickSortMidFlag.sort(arr);
         } else if(HeapSortSimple.getName().equals(sortName)){
             HeapSortSimple.sort(arr);
-        } else {
+        } else if(HeapSort.getName().equals(sortName)){
+            HeapSort.sort(arr);
+        }
+        else {
             throw new RuntimeException("Wrong Sort Name.");
         }
 
