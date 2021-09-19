@@ -1,7 +1,6 @@
 package local.begin.jianZhiOffer;
 
-import java.util.Arrays;
-import java.util.Random;
+import java.util.*;
 
 /**
  * 剑指 Offer 40. 最小的k个数
@@ -77,5 +76,38 @@ public class Interview40 {
         }
         swap(arr, l, j);
         return j;
+    }
+
+    public int[] getLeastNumbers1(int[] arr, int k) {
+
+//        PriorityQueue<Integer> pq = new PriorityQueue<>(new Comparator<Integer>() {
+//            @Override
+//            public int compare(Integer o1, Integer o2) {
+//                // 最小优先队列 return o1.compareTo(o2);
+//                // 最大优先队列 return o2.compareTo(o1);
+//                return o2.compareTo(o1);
+//            }
+//        });
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+        for(int i = 0; i < k; i++){
+            pq.add(arr[i]);
+        }
+
+        for(int i = k; i < arr.length; i++){
+            if(!pq.isEmpty() && arr[i] < pq.peek()){
+                pq.remove();
+                pq.add(arr[i]);
+            }
+        }
+        int[] res = new int[k];
+        for(int i = 0; i < k; i++){
+            res[i] = pq.remove();
+        }
+        return res;
+    }
+
+    public static void main(String[] args) {
+        Interview40 solution = new Interview40();
+        System.out.println(solution.getLeastNumbers(new int[]{3,2,1}, 2));
     }
 }
