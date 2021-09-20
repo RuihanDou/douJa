@@ -53,6 +53,12 @@ public class SortingHelper {
             HeapSortSimple.sort(arr);
         } else if(HeapSort.getName().equals(sortName)){
             HeapSort.sort(arr);
+        } else if(BubbleSort.getName().equals(sortName)){
+            BubbleSort.sort(arr);
+        } else if(BubbleSortOpt1.getName().equals(sortName)){
+            BubbleSortOpt1.sort(arr);
+        } else if(BubbleSortOpt2.getName().equals(sortName)){
+            BubbleSortOpt2.sort(arr);
         }
         else {
             throw new RuntimeException("Wrong Sort Name.");
