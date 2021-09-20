@@ -61,6 +61,10 @@ public class SortingHelper {
             BubbleSortOpt2.sort(arr);
         } else if(ShellSort.getName().equals(sortName)){
             ShellSort.sort(arr);
+        } else if(ShellSortOpt1.getName().equals(sortName)){
+            ShellSortOpt1.sort(arr);
+        } else if(ShellSortOpt2.getName().equals(sortName)){
+            ShellSortOpt2.sort(arr);
         }
         else {
             throw new RuntimeException("Wrong Sort Name.");
