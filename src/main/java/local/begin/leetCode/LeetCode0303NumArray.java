@@ -65,6 +65,9 @@ public class LeetCode0303NumArray {
     }
 
     public int sumRange(int left, int right) {
+        if(segTree == null){
+            throw new IllegalArgumentException("Segment Tree is null");
+        }
         return segTree.query(left, right);
     }
 
