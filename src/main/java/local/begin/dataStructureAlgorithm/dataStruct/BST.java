@@ -8,7 +8,7 @@ import java.util.LinkedList;
  * 不包含重复的元素
  * @param <E> 可比较
  */
-public class BST  <E extends Comparable<E>>{
+public class BST <E extends Comparable<E>>{
 
     private class Node{
         public E e;
