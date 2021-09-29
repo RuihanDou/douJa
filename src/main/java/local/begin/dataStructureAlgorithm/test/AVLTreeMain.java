@@ -7,7 +7,7 @@ import local.begin.dataStructureAlgorithm.helper.FileOperation;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class AVLMain {
+public class AVLTreeMain {
 
     public static void main(String[] args) {
 
