@@ -39,32 +39,82 @@ package local.begin.leetCode;
  * 你能想出一个仅使用常数空间的一趟扫描算法吗？
  */
 public class LeetCode0075Solution {
+    /**
+     * 使用 partition 解决
+     */
+//    public void sortColors(int[] nums) {
+//        // nums[0 ... zero] == 0; nums[zero + 1, i] == 1; nums[two, n - 1] == 2
+//        int zero = -1, i = 0, two = nums.length;
+//        while (i < two){
+//
+//            if(nums[i] == 0){
+//                zero++;
+//                swap(nums, zero, i);
+//                i++;
+//            }
+//
+//            else if(nums[i] == 2){
+//                two--;
+//                swap(nums, i, two);
+//            }
+//
+//            else {
+//                i++; // num[i] == 1
+//            }
+//        }
+//    }
+//
+//    private void swap(int[] nums, int i, int j){
+//        int t = nums[i];
+//        nums[i] = nums[j];
+//        nums[j] = t;
+//    }
+
+    /**
+     * 使用 计数排序 解决
+     */
+
+//    public void sortColors(int[] nums) {
+//
+//        int[] cnt = new int[3];
+//        for(int num : nums){
+//            cnt[num]++;
+//        }
+//
+//        for(int i = 0; i < cnt[0]; i++){
+//            nums[i] = 0;
+//        }
+//
+//        for(int i = cnt[0]; i < cnt[0] + cnt[1]; i++){
+//            nums[i] = 1;
+//        }
+//
+//        for(int i = cnt[0] + cnt[1]; i < cnt[0] + cnt[1] + cnt[2]; i++){
+//            nums[i] = 2;
+//        }
+//    }
 
     public void sortColors(int[] nums) {
-        // nums[0 ... zero] == 0; nums[zero + 1, i] == 1; nums[two, n - 1] == 2
-        int zero = -1, i = 0, two = nums.length;
-        while (i < two){
+        // 处理元素取值范围是[0, R)的计数排序
+        int R = 3;
 
-            if(nums[i] == 0){
-                zero++;
-                swap(nums, zero, i);
-                i++;
-            }
+        int[] cnt = new int[3];
+        for(int num : nums){
+            cnt[num]++;
+        }
 
-            else if(nums[i] == 2){
-                two--;
-                swap(nums, i, two);
-            }
+        // [index[i], index[i + 1]) 的值为 i
+        int[] index = new int[R + 1];
+        for(int i = 0; i < R; i++){
+            index[i + 1] = index[i] + cnt[i];
+        }
 
-            else {
-                i++; // num[i] == 1
+        for(int i = 0; i + 1 < index.length; i++){
+            // [index[i], index[i + 1]) 的 值为 i
+            for(int j = index[i]; j < index[i + 1]; j++){
+                nums[j] = i;
             }
         }
     }
 
-    private void swap(int[] nums, int i, int j){
-        int t = nums[i];
-        nums[i] = nums[j];
-        nums[j] = t;
-    }
 }

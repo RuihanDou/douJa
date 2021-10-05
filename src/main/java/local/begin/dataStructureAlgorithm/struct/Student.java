@@ -30,6 +30,13 @@ public class Student implements Comparable<Student> {
         return this.name.toLowerCase().equals(another.name.toLowerCase());
     }
 
+    public int getScore() {
+        return score;
+    }
+
+    public String getName() {
+        return name;
+    }
 
     @Override
     public int compareTo(Student another) {
