@@ -31,4 +31,27 @@ public class ArrayGenerator {
         return arr;
     }
 
+    /**
+     * 生成随机字符串数组
+     * @param n 数组长度
+     * @param w 字符串长度
+     * @return
+     */
+    public static String[] generateRandomStringArray(int n, int w){
+
+        String[] arr = new String[n];
+
+        // 33 - 126 区间的ascii 字符可以打印
+        Random rnd = new Random();
+        for (int i = 0; i < n; i++){
+            StringBuilder sb = new StringBuilder();
+            for (int j = 0; j < w; j++){
+                sb.append((char) (rnd.nextInt(94) + 33));
+            }
+            arr[i] = sb.toString();
+        }
+
+        return arr;
+    }
+
 }

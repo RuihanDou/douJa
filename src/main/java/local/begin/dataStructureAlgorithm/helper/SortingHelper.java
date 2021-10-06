@@ -65,6 +65,12 @@ public class SortingHelper {
             ShellSortOpt1.sort(arr);
         } else if(ShellSortOpt2.getName().equals(sortName)){
             ShellSortOpt2.sort(arr);
+        } else if(LSDSort.getName().equals(sortName)){
+            String[] strArr = (String[]) arr;
+            if(strArr.length == 0){
+                throw new IllegalArgumentException("arr can not be empty");
+            }
+            LSDSort.sort(strArr, strArr[0].length());
         }
         else {
             throw new RuntimeException("Wrong Sort Name.");
