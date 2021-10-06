@@ -12,7 +12,7 @@ public class LSDSort {
 
 
     /**
-     * LSD 字符串排序
+     * LSD 字符串排序 是一种 基数排序算法
      *
      * LSD排序要求所有字符串长度相等
      *
