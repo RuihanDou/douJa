@@ -60,6 +60,20 @@ public class FileOperation {
         return true;
     }
 
+    public static String readFile(String filename){
+
+        ArrayList<String> list = new ArrayList<>();
+        if(readFile(filename, list)){
+            StringBuilder sb = new StringBuilder();
+            for(String word: list){
+                sb.append(word + " ");
+            }
+            return sb.toString();
+        }
+
+        throw new RuntimeException("Error in reading " + filename);
+    }
+
     // 寻找字符串s中，从start的位置开始的第一个字母字符的位置
     private static int firstCharacterIndex(String s, int start){
 
