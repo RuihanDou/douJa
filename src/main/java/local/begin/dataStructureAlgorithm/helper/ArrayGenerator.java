@@ -37,11 +37,12 @@ public class ArrayGenerator {
      * @param w 字符串长度
      * @return
      */
-    public static String[] generateRandomStringArray(int n, int w){
+    public static String[] generateRandomSameLengthStringArray(int n, int w){
 
         String[] arr = new String[n];
 
-        // 33 - 126 区间的ascii 字符可以打印
+        // https://www.ascii-code.com/
+        // 33-126 可打印字符
         Random rnd = new Random();
         for (int i = 0; i < n; i++){
             StringBuilder sb = new StringBuilder();
@@ -51,6 +52,23 @@ public class ArrayGenerator {
             arr[i] = sb.toString();
         }
 
+        return arr;
+    }
+
+    public static String[] generateRandomStringArray(int n, int bound){
+
+        // https://www.ascii-code.com/
+        // 33-126 可打印字符
+        String[] arr = new String[n];
+        Random rnd = new Random();
+        for(int i = 0; i < n; i ++){
+            StringBuilder sb = new StringBuilder();
+            int w = rnd.nextInt(bound);
+            for(int j = 0; j < w; j ++){
+                sb.append((char)(rnd.nextInt(94) + 33));
+            }
+            arr[i] = sb.toString();
+        }
         return arr;
     }
 

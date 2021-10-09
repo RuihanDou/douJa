@@ -71,6 +71,12 @@ public class SortingHelper {
                 throw new IllegalArgumentException("arr can not be empty");
             }
             LSDSort.sort(strArr, strArr[0].length());
+        } else if(MSDSort.getName().equals(sortName)){
+            String[] strArr = (String[]) arr;
+            if(strArr.length == 0){
+                throw new IllegalArgumentException("arr can not be empty");
+            }
+            MSDSort.sort(strArr);
         }
         else {
             throw new RuntimeException("Wrong Sort Name.");
