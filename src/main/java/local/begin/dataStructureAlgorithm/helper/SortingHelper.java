@@ -77,6 +77,12 @@ public class SortingHelper {
                 throw new IllegalArgumentException("arr can not be empty");
             }
             MSDSort.sort(strArr);
+        } else if(BucketSort.getName().equals(sortName)){
+            Integer[] intArr = (Integer[]) arr;
+            BucketSort.sort(intArr, 200);
+        } else if(BucketSort2.getName().equals(sortName)){
+            Integer[] intArr = (Integer[])arr;
+            BucketSort2.sort(intArr, 200);
         }
         else {
             throw new RuntimeException("Wrong Sort Name.");
