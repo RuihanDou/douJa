@@ -14,6 +14,9 @@ public class SubstringMatchHelper {
         if(name.equals("bruteforce")){
             pos = SubstringMatch.bruteforce(s, t);
         }
+        else if(name.equals("rk")){
+            pos = SubstringMatch.rabinKarp(s, t);
+        }
         long endTime = System.nanoTime();
 
         double time = (endTime - startTime) / 1000000000.0;
