@@ -189,6 +189,10 @@ public class BST <E extends Comparable<E>>{
     // 二分搜索树的非递归前序遍历
     public void preOrderNR(){
 
+        if(root == null){
+            return;
+        }
+
         Stack<Node> stack = new Stack<>();
         stack.push(root);
         while (!stack.isEmpty()){
@@ -202,8 +206,72 @@ public class BST <E extends Comparable<E>>{
                 stack.push(cur.left);
             }
         }
-
     }
+
+    // 二分搜索树的非递归中序遍
+    public void inOrderNR(){
+
+        if(root == null){
+            return;
+        }
+
+        Stack<Node> stack = new Stack<>();
+        Node cur = root;
+
+        while (cur != null || !stack.isEmpty()){
+            while (cur != null){
+                stack.push(cur);
+                cur = cur.left;
+            }
+            if(!stack.isEmpty()){
+                cur = stack.pop();
+                System.out.println(cur.e);
+                cur = cur.right;
+            }
+        }
+    }
+    //        /////////////////
+    //        //      5      //
+    //        //    /   \    //
+    //        //   3    6    //
+    //        //  / \    \   //
+    //        // 2  4     8  //
+    //        /////////////////
+    // 二分搜索树的非递归后序遍 todo:解决无限循环问题
+    public void postOrderNR(){
+        if(root == null){
+            return;
+        }
+
+        Stack<Node> stack1 = new Stack<>();
+        Stack<Integer> stack2 = new Stack<>();
+        int i = 1;
+        Node cur = root;
+        while (cur != null || !stack1.isEmpty()){
+            while (cur != null){
+                stack1.push(cur);
+                stack2.push(0);
+                cur = cur.left;
+            }
+
+            while (!stack1.isEmpty() && stack2.peek() == i){
+                stack2.pop();
+                cur = stack1.pop();
+                System.out.println(cur.e);
+                cur = null;
+            }
+
+            if(!stack1.isEmpty()){
+                stack2.pop();
+                stack2.push(1);
+                cur = stack1.peek();
+                cur = cur.right;
+            }
+
+        }
+    }
+
+
 
     // 二分搜索树的层序遍历
     public void levelOrder(){
@@ -369,10 +437,10 @@ public class BST <E extends Comparable<E>>{
 
     public static void main(String[] args) {
         BST<Integer> bst = new BST<>();
-//        int[] nums = new int[]{5,3,6,8,4,2};
-//        for (int num : nums){
-//            bst.add(num);
-//        }
+        int[] nums = new int[]{5,3,6,8,4,2};
+        for (int num : nums){
+            bst.add(num);
+        }
 
 //        /////////////////
 //        //      5      //
@@ -388,46 +456,49 @@ public class BST <E extends Comparable<E>>{
 //        System.out.println();
 //        bst.inOrder();
 //        System.out.println();
-//        bst.postOrder();
-//        System.out.println();
+        bst.postOrder();
+        System.out.println();
 //        bst.levelOrder();
 //        System.out.println();
 //        System.out.println(bst);
-        int n = 1000;
-        Random random = new Random();
-        for(int i = 0; i < n; i++){
-            bst.add(random.nextInt(10000));
-        }
-
-        List<Integer> nums = new ArrayList<>();
-        while (!bst.isEmpty()){
-            nums.add(bst.removeMin());
-        }
-
-        System.out.println(nums);
-        for(int i = 1; i < nums.size(); i++){
-            if(nums.get(i - 1) > nums.get(i)){
-                throw new IllegalArgumentException("Error");
-            }
-        }
-        System.out.println("removeMin test complete");
+        bst.postOrderNR();
 
 
-        for(int i = 0; i < n; i++){
-            bst.add(random.nextInt(10000));
-        }
-        nums.clear();
-        while (!bst.isEmpty()){
-            nums.add(bst.removeMax());
-        }
-
-        System.out.println(nums);
-        for(int i = 1; i < nums.size(); i++){
-            if(nums.get(i - 1) < nums.get(i)){
-                throw new IllegalArgumentException("Error");
-            }
-        }
-        System.out.println("removeMax test complete");
+//        int n = 1000;
+//        Random random = new Random();
+//        for(int i = 0; i < n; i++){
+//            bst.add(random.nextInt(10000));
+//        }
+//
+//        List<Integer> nums = new ArrayList<>();
+//        while (!bst.isEmpty()){
+//            nums.add(bst.removeMin());
+//        }
+//
+//        System.out.println(nums);
+//        for(int i = 1; i < nums.size(); i++){
+//            if(nums.get(i - 1) > nums.get(i)){
+//                throw new IllegalArgumentException("Error");
+//            }
+//        }
+//        System.out.println("removeMin test complete");
+//
+//
+//        for(int i = 0; i < n; i++){
+//            bst.add(random.nextInt(10000));
+//        }
+//        nums.clear();
+//        while (!bst.isEmpty()){
+//            nums.add(bst.removeMax());
+//        }
+//
+//        System.out.println(nums);
+//        for(int i = 1; i < nums.size(); i++){
+//            if(nums.get(i - 1) < nums.get(i)){
+//                throw new IllegalArgumentException("Error");
+//            }
+//        }
+//        System.out.println("removeMax test complete");
 
 
     }
