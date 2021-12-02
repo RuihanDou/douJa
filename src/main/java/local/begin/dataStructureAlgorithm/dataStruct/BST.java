@@ -243,31 +243,23 @@ public class BST <E extends Comparable<E>>{
             return;
         }
 
-        Stack<Node> stack1 = new Stack<>();
-        Stack<Integer> stack2 = new Stack<>();
-        int i = 1;
+        Stack<Node> stack = new Stack<>();
+        Node prev = null;
         Node cur = root;
-        while (cur != null || !stack1.isEmpty()){
-            while (cur != null){
-                stack1.push(cur);
-                stack2.push(0);
+        while (cur != null || !stack.isEmpty()){
+            while (cur != null) {
+                stack.push(cur);
                 cur = cur.left;
             }
-
-            while (!stack1.isEmpty() && stack2.peek() == i){
-                stack2.pop();
-                cur = stack1.pop();
+            cur = stack.pop();
+            if(cur.right == null || cur.right == prev){
                 System.out.println(cur.e);
+                prev = cur;
                 cur = null;
-            }
-
-            if(!stack1.isEmpty()){
-                stack2.pop();
-                stack2.push(1);
-                cur = stack1.peek();
+            } else {
+                stack.push(cur);
                 cur = cur.right;
             }
-
         }
     }
 

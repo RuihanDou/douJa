@@ -1,10 +1,12 @@
 package local.begin.leetCode;
 
 
+import local.begin.dataStructureAlgorithm.dataStruct.BST;
 import local.begin.struct.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * 145. 二叉树的后序遍历
@@ -36,6 +38,31 @@ public class LeetCode0145Solution {
             postOrder(node.left);
             postOrder(node.right);
             postOrderList.add(node.val);
+        }
+    }
+
+    private void postOrderNR(TreeNode node){
+        if(node == null){
+            return;
+        }
+
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode prev = null;
+        TreeNode cur = node;
+        while (cur != null || !stack.isEmpty()){
+            while (cur != null) {
+                stack.push(cur);
+                cur = cur.left;
+            }
+            cur = stack.pop();
+            if(cur.right == null || cur.right == prev){
+                postOrderList.add(cur.val);
+                prev = cur;
+                cur = null;
+            } else {
+                stack.push(cur);
+                cur = cur.right;
+            }
         }
     }
 

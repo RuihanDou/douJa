@@ -1,10 +1,12 @@
 package local.begin.leetCode;
 
+import local.begin.dataStructureAlgorithm.dataStruct.BST;
 import local.begin.struct.TreeNode;
 import lombok.val;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * 144. 二叉树的前序遍历
@@ -56,6 +58,28 @@ public class LeetCode0144Solution {
             preOrderList.add(node.val);
             preOrder(node.left);
             preOrder(node.right);
+        }
+    }
+
+    private void preOrderNR(TreeNode node){
+        if(node == null){
+            return;
+        }
+
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(node);
+
+        while (!stack.isEmpty()){
+            TreeNode cur = stack.pop();
+            preOrderList.add(cur.val);
+
+            if(cur.right != null){
+                stack.push(cur.right);
+            }
+
+            if(cur.left != null){
+                stack.push(cur.left);
+            }
         }
     }
 
