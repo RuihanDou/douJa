@@ -237,7 +237,7 @@ public class BST <E extends Comparable<E>>{
     //        //  / \    \   //
     //        // 2  4     8  //
     //        /////////////////
-    // 二分搜索树的非递归后序遍 todo:解决无限循环问题
+    // 二分搜索树的非递归后序遍
     public void postOrderNR(){
         if(root == null){
             return;
@@ -270,8 +270,6 @@ public class BST <E extends Comparable<E>>{
 
         }
     }
-
-
 
     // 二分搜索树的层序遍历
     public void levelOrder(){
