@@ -16,4 +16,6 @@ public class LeetCodePlan {
     // 429 N叉树的层序遍历
 
 
+    // 144 94 145 102
+
 }
