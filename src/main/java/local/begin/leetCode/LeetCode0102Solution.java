@@ -30,7 +30,7 @@ import java.util.Queue;
  *   [15,7]
  * ]
  */
-public class LeetCode102Solution {
+public class LeetCode0102Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>> ret = new ArrayList<>();
         if(root == null){
@@ -56,6 +56,12 @@ public class LeetCode102Solution {
             ret.add(level);
         }
         return ret;
+    }
+
+    public static void main(String[] args) {
+        LeetCode0102Solution leetCode0102Solution = new LeetCode0102Solution();
+        TreeNode root = new TreeNode(3, new TreeNode(9), new TreeNode(20, new TreeNode(15), new TreeNode(7)));
+        System.out.println(leetCode0102Solution.levelOrder(root));
     }
 
 }
