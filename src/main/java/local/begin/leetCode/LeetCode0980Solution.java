@@ -102,4 +102,76 @@ public class LeetCode0980Solution {
     private boolean inArea(int x, int y){
         return x >= 0 && x < R && y >= 0 && y < C;
     }
+
+//    private int ans;
+//    private int[][] grid;
+//    int R, C;
+//    int tr, tc, target;
+//    int[] dr = {0, -1, 0, 1};
+//    int[] dc = {1, 0, -1, 0};
+//    Integer[][][] memo;
+//
+//    public int uniquePathsIII(int[][] grid){
+//        this.grid = grid;
+//        R = grid.length;
+//        C = grid[0].length;
+//        target = 0;
+//
+//        int sr = 0, sc = 0;
+//        for(int r = 0; r < R; r++){
+//            for(int c = 0; c < C; c++){
+//                if(grid[r][c] % 2 == 0){
+//                    target |= code(r, c);
+//                }
+//                if(grid[r][c] == 1){
+//                    sr = r;
+//                    sc = c;
+//                } else if(grid[r][c] == 2){
+//                    tr = r;
+//                    tc = c;
+//                }
+//            }
+//        }
+//        memo = new Integer[R][C][1 << (R*C)];
+//        return dp(sr, sc, target);
+//    }
+//
+//    /**
+//     * 返回 从 r, c 开始行走， 还没遍历的无障碍方格集合todo 的 路径数量
+//     * @param r
+//     * @param c
+//     * @param todo 状态压缩后的 没有遍历的无障碍方格
+//     * @return
+//     */
+//    private int dp(int r, int c, int todo) {
+//        if (memo[r][c][todo] != null){
+//            return memo[r][c][todo];
+//        }
+//
+//        if(r == tr && c == tc){
+//            return todo == 0 ? 1 : 0;
+//        }
+//
+//        int ans = 0;
+//        for(int k = 0; k < 4; k++){
+//            int nr = r + dr[k];
+//            int nc = c + dc[k];
+//            if(inArea(nr, nc)){
+//                if((todo & code(nr, nc)) != 0){
+//                    ans += dp(nr, nc, todo ^ code(nr, nc));
+//                }
+//            }
+//        }
+//        memo[r][c][todo] = ans;
+//        return ans;
+//    }
+//
+//    public int code(int r, int c) {
+//        return 1 << (r * C + c);
+//    }
+//
+//    private boolean inArea(int r, int c){
+//        return  r >= 0 && r < R && c >= 0 && c < C;
+//    }
+
 }
