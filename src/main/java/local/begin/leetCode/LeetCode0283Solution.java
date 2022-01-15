@@ -1,4 +1,4 @@
-package local.begin.LeetCodeArray;
+package local.begin.leetCode;
 
 /**
  * 283. 移动零
@@ -13,14 +13,10 @@ package local.begin.LeetCodeArray;
  * 必须在原数组上操作，不能拷贝额外的数组。
  * 尽量减少操作次数。
  */
-public class Solution0283 {
+public class LeetCode0283Solution {
 
-    public void moveZeros(int[] nums){
+    public void moveZeroes(int[] nums) {
         int n = nums.length, left = 0, right = 0;
-        // 确定循环不变体
-        // left 和 right 都从0 开始，当 left == right 的时候，left 和 right 互换不会影响数组
-        // 规定循环不变体 为 [0, left] 为非0数，不论如何
-        // right 每次循环都向后移动一步
         while (right < n){
             if(nums[right] != 0){
                 swap(nums, left, right);
@@ -28,8 +24,6 @@ public class Solution0283 {
             }
             right++;
         }
-
-
     }
 
     private void swap(int[] nums, int i, int j) {
