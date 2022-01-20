@@ -1,5 +1,6 @@
 package local.begin.leetCode;
 
+import local.begin.struct.TreeNode;
 import local.begin.tools.DebugTools;
 
 import java.util.*;
@@ -50,19 +51,6 @@ import java.util.*;
  */
 
 public class LeetCode0545Solution {
-
-    public static class TreeNode{
-        int val;
-        TreeNode left;
-        TreeNode right;
-        TreeNode() {}
-        TreeNode(int val) { this.val = val; }
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-    }
 
     private boolean isLeaf(TreeNode t) {
         return t.left == null && t.right == null;

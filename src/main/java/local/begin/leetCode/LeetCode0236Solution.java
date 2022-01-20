@@ -1,6 +1,8 @@
 package local.begin.leetCode;
 
 
+import local.begin.struct.TreeNode;
+
 /**
  * 236. 二叉树的最近公共祖先
  * 给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。
@@ -36,13 +38,6 @@ package local.begin.leetCode;
  * p 和 q 均存在于给定的二叉树中。
  */
 public class LeetCode0236Solution {
-
-     public class TreeNode {
-        int val;
-         TreeNode left;
-         TreeNode right;
-         TreeNode(int x) { val = x; }
-     }
 
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
 

@@ -1,6 +1,8 @@
 package local.begin.leetCode;
 
 
+import local.begin.struct.TreeNode;
+
 /**
  * 1448. 统计二叉树中好节点的数目
  * 给你一棵根为 root 的二叉树，请你返回二叉树中好节点的数目。
@@ -42,21 +44,6 @@ package local.begin.leetCode;
  */
 
 public class LeetCode1448Solution {
-
-    public static class TreeNode{
-        int val;
-        TreeNode left;
-        TreeNode right;
-        TreeNode() {}
-        TreeNode(int val){
-            this.val = val;
-        }
-        TreeNode(int val, TreeNode left, TreeNode right){
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-    }
 
     private int goodNodeNums = 0;
 
