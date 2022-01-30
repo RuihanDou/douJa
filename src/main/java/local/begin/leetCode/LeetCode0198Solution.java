@@ -41,15 +41,23 @@ public class LeetCode0198Solution {
 //        if(length == 1){
 //            return nums[0];
 //        }
+//        // dp[i] 表示 nums[0~i] 的最大收益
 //        int[] dp = new int[length];
 //        dp[0] = nums[0];
 //        dp[1] = Math.max(nums[0], nums[1]);
+//        // 从第三间房i开始 就分两种情况：
+//        // 不偷第 i 间房， 那么 dp[i] = dp[i-1]
+//        // 偷第 i 间房，  那么 dp[i] = dp[i-2] + nums[i]
+//        // 从两种情况种选择收益最大的
 //        for(int i = 2; i < length; i++){
 //            dp[i] = Math.max(dp[i-2] + nums[i], dp[i-1]);
 //        }
 //        return dp[length-1];
 //    }
 
+
+    // 根据上一个程序的逻辑
+    // 在进入num[i] 的讨论的时候，只需要 维护住 num[i-2]时的收益(first) 和 num[i-1]的收益(second) 两个状态就行
     public int rub(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
