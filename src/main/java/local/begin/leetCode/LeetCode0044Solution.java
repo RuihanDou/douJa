@@ -107,9 +107,15 @@ public class LeetCode0044Solution {
 
     /**
      * 贪心
+     *
+     * 如果模式 p 的形式是 * u_1 * u_2 * u_3 * ... * u_x *
+     *
+     * 算法的本质是在 s 中 分别找到 u_1, u_2, u_3 ... u_x
      */
     public boolean isMatch(String s, String p) {
         int sRight = s.length(), pRight = p.length();
+
+        // 匹配 当 p 不是以 * 结尾时 u_x 部分
         while (sRight > 0 && pRight > 0 && p.charAt(pRight - 1) != '*') {
             if (charMatch(s.charAt(sRight - 1), p.charAt(pRight - 1))) {
                 --sRight;
@@ -119,22 +125,34 @@ public class LeetCode0044Solution {
             }
         }
 
+        // 如果 p 的 u_x 左边为空, 如果匹配，则 s 的 u_x 左边也应该为空
         if (pRight == 0) {
             return sRight == 0;
         }
 
+        // 运行到此处，可以确定 s.charAt(pRight) == '*'
+
         int sIndex = 0, pIndex = 0;
         int sRecord = -1, pRecord = -1;
 
+        // 从左向右遍历 s 和 p
         while (sIndex < sRight && pIndex < pRight) {
+            // 命中这个条件，说明 条件1：p 的第一个字符是 *
+            //                 条件2：u_(i - 1) 找到，现在开始找 u_i
             if (p.charAt(pIndex) == '*') {
                 ++pIndex;
+                // 条件1 时 sRecord = 0, pRecord = 1, 条件2 时 p 前进到向 u_i 的第一个字符， s前进到下一个字符
                 sRecord = sIndex;
                 pRecord = pIndex;
-            } else if (charMatch(s.charAt(sIndex), p.charAt(pIndex))) {
+            }
+            // 命中到这个条件，两个字符可以匹配，分别往前走一步
+            else if (charMatch(s.charAt(sIndex), p.charAt(pIndex))) {
                 ++sIndex;
                 ++pIndex;
-            } else if (sRecord != -1 && sRecord + 1 < sRight) {
+            }
+            // 命中这个条件，证明前面已经有一段s和p的匹配， 该位置 s 不匹配 p，s应该向下走（因为该位置前，p 有 *）
+            // 之后能够匹配上 也可以满足条件
+            else if (sRecord != -1 && sRecord + 1 < sRight) {
                 ++sRecord;
                 sIndex = sRecord;
                 pIndex = pRecord;
