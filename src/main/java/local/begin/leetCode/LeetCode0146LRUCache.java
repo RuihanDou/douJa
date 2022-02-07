@@ -1,6 +1,7 @@
 package local.begin.leetCode;
 
 import local.begin.tools.DebugTools;
+import sun.misc.LRUCache;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -40,7 +41,7 @@ import java.util.Map;
  * lRUCache.get(4);    // 返回 4
  */
 
-public class LeetCode0146Solution {
+public class LeetCode0146LRUCache {
 
     // Last Recently Used Cache
     // 继承LinkedHashMap
@@ -67,98 +68,98 @@ public class LeetCode0146Solution {
 //        }
 //    }
 
-    static class LRUCache {
 
-        private class DoublyLinkedNode{
-            DoublyLinkedNode prev;
-            DoublyLinkedNode next;
-            int key;
-            int val;
 
-            public DoublyLinkedNode(int key, int val) {
-                this.val = val;
-                this.key = key;
-            }
-        }
+    private class DoublyLinkedNode{
+        DoublyLinkedNode prev;
+        DoublyLinkedNode next;
+        int key;
+        int val;
 
-        DoublyLinkedNode head;
-        DoublyLinkedNode tail;
-        Map<Integer, DoublyLinkedNode> map;
-        int size;
-
-        public LRUCache(int capacity) {
-            head = new DoublyLinkedNode(0, 0);
-            tail = new DoublyLinkedNode(0, 0);
-
-            head.next = tail;
-            tail.next = head;
-
-            map = new HashMap<>();
-            size = capacity;
-        }
-
-        public int get(int key) {
-            if (map.containsKey(key)){
-                DoublyLinkedNode node = map.get(key);
-                delete(node);
-                add(node);
-                return node.val;
-            } else {
-                return -1;
-            }
-        }
-
-        public void put(int key, int value) {
-            if(map.containsKey(key)){
-                DoublyLinkedNode cur = map.get(key);
-                delete(cur);
-                cur.val = value;
-                add(cur);
-            } else {
-                DoublyLinkedNode newNode = new DoublyLinkedNode(key, value);
-                add(newNode);
-            }
-        }
-
-        /**
-         * delete node in linkedlist and map
-         * @param node
-         */
-        private void delete(DoublyLinkedNode node) {
-            DoublyLinkedNode prev = node.prev;
-            DoublyLinkedNode next = node.next;
-            prev.next = node.next;
-            next.prev = node.prev;
-            map.remove(node.key);
-            node = null;
-        }
-
-        /**
-         * add value in queue, and delete the last value if necessary
-         * @param newNode
-         */
-        private void add(DoublyLinkedNode newNode){
-            insertQueue(newNode);
-            map.put(newNode.key, newNode);
-            if(map.size() > size) {
-                DoublyLinkedNode toBeDelete = tail.prev;
-                delete(tail.prev);
-                map.remove(toBeDelete.key);
-            }
-        }
-
-        private void insertQueue(DoublyLinkedNode node){
-            DoublyLinkedNode oldFirst = head.next;
-            head.next = node;
-            node.prev = head;
-
-            oldFirst.prev = node;
-            node.next = oldFirst;
+        public DoublyLinkedNode(int key, int val) {
+            this.val = val;
+            this.key = key;
         }
     }
 
+    DoublyLinkedNode head;
+    DoublyLinkedNode tail;
+    Map<Integer, DoublyLinkedNode> map;
+    int size;
+
+    public LeetCode0146LRUCache(int capacity) {
+        head = new DoublyLinkedNode(0, 0);
+        tail = new DoublyLinkedNode(0, 0);
+
+        head.next = tail;
+        tail.next = head;
+
+        map = new HashMap<>();
+        size = capacity;
+    }
+
+    public int get(int key) {
+        if (map.containsKey(key)){
+            DoublyLinkedNode node = map.get(key);
+            delete(node);
+            add(node);
+            return node.val;
+        } else {
+            return -1;
+        }
+    }
+
+    public void put(int key, int value) {
+        if(map.containsKey(key)){
+            DoublyLinkedNode cur = map.get(key);
+            delete(cur);
+            cur.val = value;
+            add(cur);
+        } else {
+            DoublyLinkedNode newNode = new DoublyLinkedNode(key, value);
+            add(newNode);
+        }
+    }
+
+    /**
+     * delete node in linkedlist and map
+     * @param node
+     */
+    private void delete(DoublyLinkedNode node) {
+        DoublyLinkedNode prev = node.prev;
+        DoublyLinkedNode next = node.next;
+        prev.next = node.next;
+        next.prev = node.prev;
+        map.remove(node.key);
+        node = null;
+    }
+
+    /**
+     * add value in queue, and delete the last value if necessary
+     * @param newNode
+     */
+    private void add(DoublyLinkedNode newNode){
+        insertQueue(newNode);
+        map.put(newNode.key, newNode);
+        if(map.size() > size) {
+            DoublyLinkedNode toBeDelete = tail.prev;
+            delete(tail.prev);
+            map.remove(toBeDelete.key);
+        }
+    }
+
+    private void insertQueue(DoublyLinkedNode node){
+        DoublyLinkedNode oldFirst = head.next;
+        head.next = node;
+        node.prev = head;
+
+        oldFirst.prev = node;
+        node.next = oldFirst;
+    }
+
+
     public static void main(String[] args) {
-        LRUCache lcuCache = new LRUCache(2);
+        LeetCode0146LRUCache lcuCache = new LeetCode0146LRUCache(2);
         DebugTools.print(lcuCache.get(2));
         lcuCache.put(2,6);
         DebugTools.print(lcuCache.get(1));
