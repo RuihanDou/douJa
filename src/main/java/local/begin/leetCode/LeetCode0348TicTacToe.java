@@ -62,12 +62,57 @@ package local.begin.leetCode;
  */
 public class LeetCode0348TicTacToe {
 
-//    public LeetCode0348TicTacToe(int n) {
-//
-//    }
-//
-//    public int move(int row, int col, int player) {
-//
-//    }
+    // 记录正对角线上的情况
+    private int diagonal;
+
+    // 记录反对角线上的情况
+    private int reverseDiagonal;
+
+    // 记录 行 的情况
+    private int[] rows;
+
+    // 记录 列 的情况
+    private int[] cols;
+
+    private int size;
+
+
+    public LeetCode0348TicTacToe(int n) {
+        this.size = n;
+        this.rows = new int[n];
+        this.cols = new int[n];
+    }
+
+    /** Player {player} makes a move at ({row}, {col}).
+     @param row The row of the board.
+     @param col The column of the board.
+     @param player The player, can be either 1 or 2.
+     @return The current winning condition, can be either:
+     0: No one wins.
+     1: Player 1 wins.
+     2: Player 2 wins. */
+    public int move(int row, int col, int player) {
+        int toAdd = player == 1 ? 1 : -1;
+
+        rows[row] += toAdd;
+        cols[col] += toAdd;
+
+        if (row == col) {
+            diagonal += toAdd;
+        }
+
+        if (col == size - row - 1) {
+            reverseDiagonal += toAdd;
+        }
+
+        // 有行， 列，对角线 的 和达到size 或 -size，证明有人赢下比赛
+        if (Math.abs(rows[row]) == size || Math.abs(cols[col]) == size
+                || Math.abs(diagonal) == size || Math.abs(reverseDiagonal) == size) {
+            return player;
+        }
+
+        return 0;
+
+    }
 
 }
