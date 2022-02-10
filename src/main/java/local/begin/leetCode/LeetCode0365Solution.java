@@ -46,12 +46,7 @@ public class LeetCode0365Solution {
      * @return
      */
     private int gcd(int x, int y){
-        if(x % y == 0){
-            return y;
-        }
-        else {
-            return gcd(y, x % y);
-        }
+        return y != 0 ? gcd(y, x % y) : x;
     }
 
 }
