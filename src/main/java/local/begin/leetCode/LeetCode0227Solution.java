@@ -74,7 +74,7 @@ public class LeetCode0227Solution {
 
     public static void main(String[] args) {
         LeetCode0227Solution solution = new LeetCode0227Solution();
-        System.out.println(solution.calculate("3+2*2"));
+        System.out.println(solution.calculate("(2+6*3+5-(3*14/7+2)*5)+3"));
     }
 
 }
