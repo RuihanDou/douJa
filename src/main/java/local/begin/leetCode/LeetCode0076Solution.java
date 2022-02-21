@@ -44,49 +44,72 @@ import java.util.Map;
 public class LeetCode0076Solution {
 
     public String minWindow(String s, String t) {
-        int tLen = t.length();
-        // key是t中出现的字符，value是字符出现的个数
-        Map<Character, Integer> targetMap = new HashMap<>();
-        for(int i = 0; i < tLen; i++){
-            char c = t.charAt(i);
-            targetMap.put(c, targetMap.getOrDefault(c, 0) + 1);
-        }
-        // 查看s串，建立窗口
-        int l = 0, r = -1;
-        int len = Integer.MAX_VALUE, ansL = -1, ansR = -1;
         int sLen = s.length();
-        Map<Character, Integer> cnt = new HashMap<>();
-        while (r < sLen){
-            r++;
-            if(r < sLen && targetMap.containsKey(s.charAt(r))){
-                cnt.put(s.charAt(r), cnt.getOrDefault(s.charAt(r), 0) + 1);
-            }
-            while (check(targetMap, cnt) && l <= r){
-                if(r - l + 1 < len){
-                    len = r - l + 1;
-                    ansL = l;
-                    ansR = ansL + len;
-                }
-                if(targetMap.containsKey(s.charAt(l))){
-                    cnt.put(s.charAt(l), cnt.getOrDefault(s.charAt(l), 0) - 1);
-                }
-                l++;
-            }
-        }
-        return ansL == -1 ? "" : s.substring(ansL, ansR);
-    }
+        int tLen = t.length();
 
-    public boolean check(Map<Character, Integer> ori, Map<Character, Integer> cnt) {
-        Iterator iter = ori.entrySet().iterator();
-        while (iter.hasNext()) {
-            Map.Entry entry = (Map.Entry) iter.next();
-            Character key = (Character) entry.getKey();
-            Integer val = (Integer) entry.getValue();
-            if (cnt.getOrDefault(key, 0) < val) {
-                return false;
-            }
+        if(sLen == 0 || tLen == 0 || sLen < tLen){
+            return "";
         }
-        return true;
+
+        char[] charArrayS = s.toCharArray();
+        char[] charArrayT = t.toCharArray();
+
+        // 使用字符频数数组记录
+        int[] winFreq = new int[128];
+        int[] tFreq = new int[128];
+
+        for (char c : charArrayT){
+            tFreq[c]++;
+        }
+
+        // 滑动窗口中需要的变量，滑动窗口中包含多少t中的字符，对应的频数超过了不重复计算
+        int distance = 0;
+        int minLen = sLen + 1;
+        int begin = 0;
+        // [left, right) right 左边的字符都是看过的且 长度为 right - left
+        int left = 0;
+        int right = 0;
+
+        while (right < sLen){
+            // 如果有边界上的字符不在t中出现，有边界右移
+            if(tFreq[charArrayS[right]] == 0){
+                right++;
+                continue;
+            }
+            // 此时 charArrayS[right] 的字符一定在 t 中出现， 统计该字符对应的频率并且右移一位，看下一个字符, 维护distance 和 winFreq
+            if(winFreq[charArrayS[right]] < tFreq[charArrayS[right]]){
+                distance++;
+            }
+            winFreq[charArrayS[right]]++;
+            right++;
+
+            while (distance == tLen){
+
+                if(right - left < minLen){
+                    minLen = right - left;
+                    begin = left;
+                }
+
+                if(tFreq[charArrayS[left]] == 0){
+                    left++;
+                    continue;
+                }
+
+                if(winFreq[charArrayS[left]] == tFreq[charArrayS[left]]){
+                    distance--;
+                }
+
+                winFreq[charArrayS[left]]--;
+                left++;
+
+            }
+
+
+        }
+        if(minLen == sLen + 1){
+            return "";
+        }
+        return s.substring(begin, begin + minLen);
     }
 
 }
