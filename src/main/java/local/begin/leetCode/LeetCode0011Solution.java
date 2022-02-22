@@ -25,6 +25,12 @@ package local.begin.leetCode;
  */
 public class LeetCode0011Solution {
 
+    /**
+     * 使用双指针
+     *
+     * @param height
+     * @return
+     */
     public int maxArea(int[] height) {
         int left = 0;
         int right = height.length - 1;

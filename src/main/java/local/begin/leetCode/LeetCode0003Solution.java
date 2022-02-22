@@ -27,104 +27,33 @@ import java.util.*;
 public class LeetCode0003Solution {
 
     /**
-     * 暴力遍历法
+     * 使用滑动窗口解决
      * @param s
      * @return
      */
-    public static int lengthOfLongestSubstringV0(String s) {
-        int ans = 0;
+    public int lengthOfLongestSubstring(String s) {
+
+        // 记录窗口中出现的字符
+        Set<Character> occ = new HashSet<>();
         int n = s.length();
-        for (int i = 0; i < n; i++) {
-            for (int j = i + 1; j <= n; j++) {
-                if (allUnique(s,i, j)){
-                    ans = Math.max(j - i, ans);
-                }
+        // 初始化窗口的右边界，结果暂存量
+        int r = - 1, ans = 0;
+        //
+        for(int l = 0; l < n; l++){
+            // 因为循环伊始，左指针就向右移动一格，移除的字符对应从出现的字符中移除
+            if(l != 0){
+                occ.remove(s.charAt(l));
             }
-        }
-        return ans;
-    }
+            // 右移 右边界 因为右移向右多看一格，所以 l < n - 1，向右移动得保证子串中没有重复字符
+            while (r < n - 1 && !occ.contains(s.charAt(r + 1))){
+                occ.add(s.charAt(r + 1));
+                r++;
+            }
 
-    /**
-     * 滑动窗口法，窗口是一个HashSet
-     * @param s
-     * @return
-     */
-    public static int lengthOfLongestSubstringV1(String s) {
-        int ans = 0;
-        int n = s.length();
-        int i = 0, j = 0;
-        Set<Character> set = new HashSet<>();
-
-        while(i < n && j < n) {
-            if (!set.contains(s.charAt(j))) {
-                set.add(s.charAt(j));
-                j++;
-                ans = Math.max(ans , set.size());
-            }
-            else {
-                set.remove(s.charAt(i));
-                i++;
-            }
+            ans = Math.max(ans, r - l + 1);
         }
 
         return ans;
     }
-
-    /**
-     * 如果s[j] 在[i, j)范围内有与 j'重复的字符，我们不需要逐渐增加i。我们可以直接跳过[i，j]
-     *  范围内的所有元素，并将i变为 j' + 1
-     *  +1
-     * @param s
-     * @return
-     */
-    public static int lengthOfLongestSubstringV2(String s) {
-        int ans = 0, n = s.length();
-        Map<Character, Integer> map = new HashMap<>();
-        for (int i = 0, j = 0; j < n; j++) {
-            if (map.containsKey(s.charAt(j))) {
-                i = Math.max(map.get(s.charAt(j)) + 1, i);
-            }
-            ans = Math.max(j - i + 1, ans);
-            map.put(s.charAt(j), j);
-        }
-        return ans;
-    }
-
-    /**
-     * 把添加的map换成数组
-     * @param s
-     * @return
-     */
-    public static int lengthOfLongestSubstringV3(String s) {
-        int n = s.length(), ans = 0;
-        // 初始化出来index每一位都是0
-        int[] index = new int[256];
-
-        for (int j = 0, i = 0; j < n; j++) {
-            i = Math.max(index[s.charAt(j)] + 1, i);
-            ans = Math.max(ans, j - i + 1);
-            index[s.charAt(j)] = j;
-        }
-
-        return ans;
-    }
-
-    private static boolean allUnique(String s, int start, int end) {
-        Set<Character> set = new HashSet<>();
-        for (int i = start; i < end; i++) {
-            char ch = s.charAt(i);
-            if (set.contains(ch)) {
-                return false;
-            }
-            set.add(ch);
-        }
-        return true;
-    }
-
-    public static void main(String[] args) {
-        int num = LeetCode0003Solution.lengthOfLongestSubstringV3("pwwkew");
-        System.out.println(num);
-    }
-
 
 }

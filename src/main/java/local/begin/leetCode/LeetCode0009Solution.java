@@ -25,26 +25,26 @@ package local.begin.leetCode;
  */
 public class LeetCode0009Solution {
 
-    public static boolean isPalindrome(int x) {
+    public boolean isPalindrome(int x) {
+        // 负数不是回文数，如果个位是0，最高位无法是0，所以也不是回文数
         if (x < 0 || (x % 10 == 0 && x != 0)) {
             return false;
-        } else if (x >= 0 && x <= 9) {
+        }
+        // 只有一位数，是回文数
+        else if (x >= 0 && x <= 9) {
             return true;
         }
-        int n = 0;
+        // 计算翻转的数字
+        int revert = 0;
         while (x != 0) {
-            n *= 10;
-            n += x % 10;
+            revert += revert * 10 + x % 10;
             x /= 10;
-            if (x == n || x / 10 == n) {
+            // x == revert 是偶数位的情况， x / 10 == revert 是奇数位的情况，一旦出现就可以确定是回文数
+            if (x == revert || x / 10 == revert) {
                 return true;
             }
         }
         return false;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(LeetCode0009Solution.isPalindrome(1));
     }
 
 }
