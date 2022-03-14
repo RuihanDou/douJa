@@ -40,93 +40,87 @@ import java.util.*;
  */
 public class LeetCode0269Solution {
 
-    /**
-     * 使用拓扑排序
-     *
-     * @param words
-     * @return
-     */
+    boolean error=false;
     public String alienOrder(String[] words) {
-        // 构建图
-        Map<Character, Set<Character>> map = new HashMap<>();
-        for(int i = 0; i < words.length - 1; i++){
-            for(int j = 0; j < words[i].length() && j < words[i + 1].length(); j++){
-                //如果当前字符一样，比较下一个
-                if(words[i].charAt(j) == words[i + 1].charAt(j)){
-//                    if(j == words[i].length() - 1 && j != words[i + 1].length() - 1){
-//                        return "";
-//                    }
-                    continue;
-                }
-                //保存第一个不同字符的顺序
-                Set<Character> set = map.getOrDefault(words[i].charAt(j), new HashSet<>());
-                set.add(words[i + 1].charAt(j));
-                map.put(words[i].charAt(j), set);
-                //一定break掉，排序已经由现在的 words[i].charAt(j) 和 words[i + 1].charAt(j) 决定了，后面的不能参考
-                break;
-            }
+        //bfs实现
+        int n=26;
+        int[] arr = new int[n];
+        boolean[] visited = new boolean[n];
+        boolean[] used = new boolean[n];
+        Deque<Integer> deque = new LinkedList<>();
+        List<List<Integer>> list = new ArrayList<>();
+        List<Character> res = new ArrayList<>();
+        for(int i = 0; i < n ; i++){
+            list.add(new ArrayList<>());
         }
+        //这种写法要求至少有两个字符串
+        //现在先特殊处理只有一个字符串的情况
+        get("", words[0], visited);
 
-        //创建保存入度的数组
-        int[] degrees = new int[26];
-        Arrays.fill(degrees, -1);
-        //注意，不是26字母都在words中出现，所以出度分为两种情况：没有出现的字母出度为-1，出现了的字母的出度为非负数
-        for (String str : words) {
-            //将出现过的字符的出度设定为0
-            for (char c : str.toCharArray())
-                degrees[c - 'a'] = 0;
+        for(int i=0,j=1;j<words.length;i++,j++){
+            char[]cs=get(words[i],words[j],visited);
+            if(error) return "";
+            if(cs==null) continue;
+            int x=cs[0]-'a';
+            int y=cs[1]-'a';
+            //x 先于 y
+            arr[y]++;
+            list.get(x).add(y);
         }
-        for (char key : map.keySet()) {
-            for (char val : map.get(key)) {
-                degrees[val - 'a']++;
-            }
+        //一共有多少个字母
+        int count=0;
+        for(boolean b:visited){
+            if(b) count++;
         }
+        //deque初始化
 
-        // 拓扑排序
-        // sb 用于保存 拓扑排序结果
-        StringBuilder sb = new StringBuilder();
-        // queue 用于保存入度置0的节点
-        Queue<Character> queue = new LinkedList<>();
-        // count 计数节点个数
-        int count = 0;
-        for(int i = 0; i < 26; i++){
-            if(degrees[i] != -1){
-                count++;
-            }
-            if(degrees[i] == 0){
-                queue.offer((char)('a' + i));
-            }
+        for(int i=0;i<n;i++){
+            if(visited[i]&&arr[i]==0) deque.offer(i);
         }
-
-        while (!queue.isEmpty()){
-            Character cur = queue.poll();
-            sb.append(cur);
-            // 对cur相邻接的的节点入度减1
-            if(map.containsKey(cur)){
-                Set<Character> set = map.get(cur);
-                for(Character c : set){
-                    degrees[c-'a']--;
-                    if(degrees[c-'a'] == 0){
-                        queue.offer(c);
-                    }
+        while (!deque.isEmpty()){
+            int index=deque.pop();
+            used[index]=true;
+            res.add((char)(index+'a'));
+            for(int x:list.get(index)){
+                arr[x]--;
+                if(arr[x]==0){
+                    deque.offer(x);
                 }
             }
         }
-
-        // 判断是否有环
-        if(sb.length() != count || (map.isEmpty() && count > 1)){
-            return "";
+        StringBuilder builder=new StringBuilder();
+        if(res.size()!=count) return  "";
+        for(int i=0;i<n;i++){
+            if(visited[i]&&!used[i]) builder.append((char)(i+'a'));
         }
-        else {
-            return sb.toString();
-        }
-
+        for(char c:res) builder.append(c);
+        return  builder.toString();
     }
-
-    public static void main(String[] args) {
-        String[] words = {"wrt", "wrtkj"};
-        LeetCode0269Solution solution = new LeetCode0269Solution();
-        System.out.println(solution.alienOrder(words));
+    //假设 s1 先于 s2
+    public char[] get(String s1, String s2, boolean[]visited){
+        for(int i = 0; i < s1.length(); i++){
+            visited[s1.charAt(i) - 'a']=true;
+        }
+        for(int i = 0; i < s2.length(); i++){
+            visited[s2.charAt(i) - 'a']=true;
+        }
+        if(s1.equals(s2)){
+            //检测null
+            return null;
+        }
+        int n = Math.min(s1.length(), s2.length());
+        for(int i = 0; i < n; i++){
+            if(s1.charAt(i) != s2.charAt(i)){
+                char x=s1.charAt(i);
+                char y=s2.charAt(i);
+                return new char[]{x,y};
+            }
+        }
+        if(s1.length() > s2.length()){
+            error=true;
+        }
+        //如果一个字符串比较结束了还没有结果 return null
+        return  null;
     }
 
 }

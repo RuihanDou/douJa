@@ -36,9 +36,22 @@ import java.util.*;
  */
 public class LeetCode0140Solution {
 
+    /**
+     * 使用哈希表存储字符串 ss 的每个下标和从该下标开始的部分可以组成的句子列表，
+     * 在回溯过程中如果遇到已经访问过的下标，则可以直接从哈希表得到结果，而不需要重复计算。
+     * 如果到某个下标发现无法匹配，则哈希表中该下标对应的是空列表，因此可以对不能拆分的情况进行剪枝优化。
+     *
+     * @param s
+     * @param wordDict
+     * @return
+     */
     public List<String> wordBreak(String s, List<String> wordDict) {
+        // map中存的是 s 字符串中 从 k 索引开始 可以拆分的句子们（ 句子:List<String> 句子们 List<List<String>> ）
+        // key : 索引, value : 句子们
         Map<Integer, List<List<String>>> map = new HashMap<>();
-        List<List<String>> wordBreaks = backtrack(s, s.length(), new HashSet<String>(wordDict), 0, map);
+        // map.get(0)就是要的结果, 进行回溯
+        List<List<String>> wordBreaks = backtrack(s, s.length(), new HashSet<>(wordDict), 0, map);
+        // 把 句子 List<String> 变成 句子 String ---> 句子们 List<List<String>> 变成句子们 List<String>
         List<String> breakList= new LinkedList<>();
         for(List<String> wordBreak : wordBreaks){
             breakList.add(String.join(" ", wordBreak));
@@ -47,13 +60,15 @@ public class LeetCode0140Solution {
     }
 
     private List<List<String>> backtrack(String s, int length, HashSet<String> wordSet, int index, Map<Integer, List<List<String>>> map) {
-
+        // 如果map中没有当前索引，证明该情况没有遍历到
         if(!map.containsKey(index)){
             List<List<String>> wordBreaks = new LinkedList<>();
+            // 如果 index 到了 s 结尾，句子们为空，之后的for循环条件不满足，直接存储到map中跳出条件分支
             if(index == length){
                 wordBreaks.add(new LinkedList<>());
             }
             for(int i = index + 1; i <= length; i++){
+                // 当 s[index, i) 在字典中，回溯 index = i 然后在 句子们前 加上 s[index, i)
                 String word = s.substring(index, i);
                 if (wordSet.contains(word)) {
                     List<List<String>> nextWordBreaks = backtrack(s, length, wordSet, i, map);
