@@ -52,77 +52,60 @@ import java.util.Arrays;
  */
 public class LeetCode0010Solution {
 
-    // p 是带符号的匹配 ； s 是全字母目标
-    // 方法1：回溯法
-    public boolean isMatchV0(String s, String p) {
-        // 如果p字符串为空，那么返回s字符串是否也为空的结果
-        if(p.isEmpty()){
-            return s.isEmpty();
-        }
-        //判断s和p的首字符是否匹配，注意要先判断s不为空,这是现在字符串的第一位
-        boolean headMatched = !s.isEmpty() && (s.charAt(0)==p.charAt(0)||p.charAt(0)=='.');
-        if (p.length() >= 2 && p.charAt(1) == '*') {
-            //如果p的下一个元素是* 则分别对两种情况做判断
-            // 情况一 是 当前位出现为 0 次；
-            boolean condition1 = isMatchV0(s, p.substring(2));
-            // 情况二是 当前位出现多次；这时需要headmatch为true
-            boolean condition2 = headMatched && isMatchV0(s.substring(1), p);
+    /**
+     * 状态转移方程
+     *
+     * 当 p[j] != * 时，
+     *        s[i] == p[j] 或 p[j] = '.'   dp[i][j] = dp[i - 1][j - 1]
+     *        其他情况                      dp[i][j] = false
+     *
+     * 当 p[j] == * 时。
+     *         s[i] == p[j]                dp[i][j] = dp[i - 1][j] || dp[i][j - 2]
+     *         其他情况                      dp[i][j] = dp[i][j - 2]
+     *
+     * @param s
+     * @param p
+     * @return
+     */
+    public boolean isMatch(String s, String p) {
+        int sLen = s.length(), pLen = p.length();
 
-            return  condition1 || condition2;
-        }else if (headMatched) {
-            // 否则，如果s和p的首字符相等
-            return isMatchV0(s.substring(1), p.substring(1));
-        }else {
-            return false;
-        }
-    }
+        boolean[][] dp = new boolean[sLen + 1][pLen + 1];
+        dp[0][0] = true;
 
-    public boolean isMatchV1(String s, String p) {
-        int sLen = s.length();
-        int pLen = p.length();
-        boolean[][] table = new boolean[sLen + 1][pLen + 1];
-        // 如果p字符串为空，那么返回s字符串是否也为空的结果
-        if(p.isEmpty()){
-            return s.isEmpty();
-        }
-
-        for (int i = 0; i < sLen; i++) {
-            for (int j = 0; j < pLen; j++) {
-                //处理第0行 , 即s为空时
-                if(i == 0) {
-                    if (j == 0) {
-                        table[i][j] = true;
-                    } else {
-                        if (j > 1 && table[i][j - 2] && p.charAt(j-1) == '*') {
-                            table[i][j] = true;
-                        } else {
-                            table[i][j] = false;
-                        }
+        for(int i = 0; i <= sLen; i++){
+            for(int j = 1; j <= pLen; j++){
+                if(p.charAt(j - 1) == '*'){
+                    dp[i][j] = dp[i][j - 2];
+                    if(matches(s, p, i, j - 1)){
+                        dp[i][j] = dp[i][j] || dp[i - 1][j];
                     }
                 }
                 else {
-                  if (j == 0) {
-                      table[i][j] = false;
-                  } else if (p.charAt(j-1) == s.charAt(i-1) || p.charAt(j) == '.') {
-                      table[i][j] = table[i -  1][j - 1];
-                  } else if (p.charAt(j-1) == '*') {
-                      // s = "baab" p = "bc*aab"的情况
-                      if(p.charAt(j-2) != s.charAt(i-1)) {
-                          table[i][j] = table[i][j - 2];
-                      } else if (p.charAt(j-2) == s.charAt(i-2) || p.charAt(j-2) == '.') {
-
-                      }
-                  }
+                    if(matches(s, p, i, j)){
+                        dp[i][j] = dp[i - 1][j - 1];
+                    }
                 }
             }
         }
-        System.out.println(Arrays.deepToString(table));
-        return table[sLen][pLen];
+        return dp[sLen][pLen];
     }
+
+    private boolean matches(String s, String p, int i, int j){
+        if(i == 0){
+            return false;
+        }
+        if(p.charAt(j - 1) == '.'){
+            return true;
+        }
+        return s.charAt(i - 1) == p.charAt(j - 1);
+    }
+
+
 
     public static void main(String[] args) {
         LeetCode0010Solution leet = new LeetCode0010Solution();
-        boolean res = leet.isMatchV1("aabcd", "a*bcd");
+        boolean res = leet.isMatch("aabcd", "a*bcd");
         System.out.println(res);
     }
 
