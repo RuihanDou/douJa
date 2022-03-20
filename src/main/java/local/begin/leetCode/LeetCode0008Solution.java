@@ -54,40 +54,64 @@ public class LeetCode0008Solution {
 
 
     public static int myAtoi(String str) {
+        // 结果
         int rst = 0;
         char[] charArray = str.toCharArray();
+        // 正负标记
         int zf = 1;
+        // 处理字符位置
         int i = 0;
+        // 字符串长度
         int length = charArray.length;
 
-        // 处理开始情况
+        // 处理数字前缀
         while (i < length) {
+            // 空字符出现，直接处理之后字符
             if (' ' == charArray[i]) {
                 i++;
                 continue;
-            } else if ('+' == charArray[i]) {
+            }
+            // 前面出现‘+’正常处理之后的字符
+            else if ('+' == charArray[i]) {
                 i++;
                 break;
-            } else if ('-' == charArray[i]) {
+            }
+            // 前面出现‘-’ 正负标记置负
+            else if ('-' == charArray[i]) {
                 i++;
                 zf = -1;
                 break;
-            } else if (charArray[i] < '0' || charArray[i] > '9') {
+            }
+            // 第一个字符不是 数字字符，直接返回 0
+            else if (charArray[i] < '0' || charArray[i] > '9') {
                 return 0;
-            } else {
+            }
+            // 没有发生以上情况，直接break 开始处理数字
+            else {
                 break;
             }
         }
-        if (length == i) {return 0;}
-
+        // 如果处理完前缀直接就把str处理完了，返回0
+        if (length == i) {
+            return 0;
+        }
+        // 开始正式处理数字
         while (i < length) {
+            // 如果后缀出现非数字字符串，直接返回前面数字部分
             if (charArray[i] < '0' || charArray[i] > '9') {
                 return rst;
             }
+            // 因为要防止溢出，所以在溢出检测前得把正负标记带上
             int pop = zf * (charArray[i] - '0');
             // 防止溢出
-            if (rst > Integer.MAX_VALUE / 10 || (rst == Integer.MAX_VALUE / 10 && pop > 7)) {return Integer.MAX_VALUE;}
-            if (rst < Integer.MIN_VALUE / 10 || (rst == Integer.MIN_VALUE / 10 && pop < -8)) {return Integer.MIN_VALUE;}
+            //  因为 Integer.MAX_VALUE 的最后一位是 7 如果 ret == Integer.MAX_VALUE && pop <= 7 没有溢出
+            if (rst > Integer.MAX_VALUE / 10 || (rst == Integer.MAX_VALUE / 10 && pop > 7)) {
+                return Integer.MAX_VALUE;
+            }
+            //  因为 Integer.MAX_VALUE 的最后一位是 8 如果 ret == Integer.MAX_VALUE && pop >= -8 没有溢出
+            if (rst < Integer.MIN_VALUE / 10 || (rst == Integer.MIN_VALUE / 10 && pop < -8)) {
+                return Integer.MIN_VALUE;
+            }
             rst = 10 * rst + pop;
             i++;
         }

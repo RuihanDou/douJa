@@ -43,9 +43,14 @@ public class LeetCode0007Solution {
             //
             //if (rev > INT_MAX/10 || (rev == INT_MAX / 10 && pop > 7)) return 0;
             //if (rev < INT_MIN/10 || (rev == INT_MIN / 10 && pop < -8)) return 0;
-            //
-            if (rst > Integer.MAX_VALUE / 10 || (rst == Integer.MAX_VALUE / 10 && pop > 7)) {return 0;}
-            if (rst < Integer.MIN_VALUE / 10 || (rst == Integer.MIN_VALUE / 10 && pop < -8)) {return 0;}
+            //  因为 Integer.MAX_VALUE 的最后一位是 7 如果 ret == Integer.MAX_VALUE && pop <= 7 没有溢出
+            if (rst > Integer.MAX_VALUE / 10 || (rst == Integer.MAX_VALUE / 10 && pop > 7)) {
+                return 0;
+            }
+            //  因为 Integer.MAX_VALUE 的最后一位是 8 如果 ret == Integer.MAX_VALUE && pop >= -8 没有溢出
+            if (rst < Integer.MIN_VALUE / 10 || (rst == Integer.MIN_VALUE / 10 && pop < -8)) {
+                return 0;
+            }
             rst = rst * 10 + pop;
         }
         return rst;
