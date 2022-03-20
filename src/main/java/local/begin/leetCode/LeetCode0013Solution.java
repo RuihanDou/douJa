@@ -64,22 +64,21 @@ public class LeetCode0013Solution {
     public int romanToInt(String s) {
         int rst = 0;
         int len = s.length();
-        for (int i = 0; i < len-1; i++) {
-            int now = change.get(s.charAt(i));
-            int next = change.get(s.charAt(i+1));
-            if(now >= next) {
-                rst += now;
-            } else {
-                rst -= now;
+        for (int i = 0; i < len; i++) {
+            int val = change.get(s.charAt(i));
+            if(i < len - 1 && val < change.get(s.charAt(i + 1))){
+                rst -= val;
+            }
+            else {
+                rst += val;
             }
         }
-        rst += change.get(s.charAt(len - 1));
         return rst;
     }
 
     public static void main(String[] args) {
         LeetCode0013Solution solution = new LeetCode0013Solution();
-        int num = solution.romanToInt("MCMXCIV");
+        int num = solution.romanToInt("IV");
         System.out.println(num);
     }
 }
