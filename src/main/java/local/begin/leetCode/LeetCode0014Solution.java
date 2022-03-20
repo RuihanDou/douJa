@@ -24,34 +24,35 @@ import java.util.*;
  */
 public class LeetCode0014Solution {
 
-    public String longestCommonPrefixV0(String[] strs) {
-        int len = strs.length;
-        int[] stringLengths = new int[len];
-        if (len < 1) {
-            return "";
-        }
-        for(int i = 0; i < len; i++){
-            stringLengths[i] = strs[i].length();
-        }
+//    public String longestCommonPrefixV0(String[] strs) {
+//        int len = strs.length;
+//        int[] stringLengths = new int[len];
+//        if (len < 1) {
+//            return "";
+//        }
+//        for(int i = 0; i < len; i++){
+//            stringLengths[i] = strs[i].length();
+//        }
+//
+//        int minLen = Arrays.stream(stringLengths).min().getAsInt();
+//        StringBuilder rst = new StringBuilder();
+//
+//        for(int i = 0; i < minLen; i++) {
+//            Set<Character> set = new HashSet<>();
+//            for(int k = 0; k < len; k++) {
+//                set.add(strs[k].charAt(i));
+//            }
+//            if(set.size() != 1) {
+//                break;
+//            }
+//            set.forEach(ele -> rst.append(ele));
+//        }
+//        return rst.toString();
+//
+//    }
 
-        int minLen = Arrays.stream(stringLengths).min().getAsInt();
-        StringBuilder rst = new StringBuilder();
-
-        for(int i = 0; i < minLen; i++) {
-            Set<Character> set = new HashSet<>();
-            for(int k = 0; k < len; k++) {
-                set.add(strs[k].charAt(i));
-            }
-            if(set.size() != 1) {
-                break;
-            }
-            set.forEach(ele -> rst.append(ele));
-        }
-        return rst.toString();
-
-    }
-
-    public String longestCommonPrefixV1(String[] strs){
+    // 只要取第1和2的最长前缀跟后面的比就可以了
+    public String longestCommonPrefix(String[] strs){
 
         int strLen = strs.length;
 
@@ -88,7 +89,7 @@ public class LeetCode0014Solution {
         String[] strs = {"cca","aba"};
         LeetCode0014Solution solution = new LeetCode0014Solution();
 
-        String rst = solution.longestCommonPrefixV1(strs);
+        String rst = solution.longestCommonPrefix(strs);
 
         System.out.println(rst);
     }
