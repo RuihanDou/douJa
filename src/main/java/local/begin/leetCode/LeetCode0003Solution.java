@@ -38,7 +38,7 @@ public class LeetCode0003Solution {
         int n = s.length();
         // 初始化窗口的右边界，结果暂存量
         int r = - 1, ans = 0;
-        //
+        // 查看s[l, r]子串
         for(int l = 0; l < n; l++){
             // 因为循环伊始，左指针就向右移动一格，移除的字符对应从出现的字符中移除
             if(l != 0){
