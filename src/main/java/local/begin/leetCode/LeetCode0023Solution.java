@@ -62,6 +62,11 @@ public class LeetCode0023Solution {
         }
     }
 
+    /**
+     * 使用优先队列
+     * @param lists
+     * @return
+     */
     public ListNode mergeKLists(ListNode[] lists) {
         PriorityQueue<Status> queue = new PriorityQueue<>();
         for (ListNode node : lists){
@@ -70,8 +75,8 @@ public class LeetCode0023Solution {
             }
         }
 
-        ListNode head = new ListNode(0);
-        ListNode tail = head;
+        ListNode dummy = new ListNode(0);
+        ListNode tail = dummy;
         while (!queue.isEmpty()){
             Status f = queue.poll();
             tail.next = f.ptr;
@@ -80,7 +85,7 @@ public class LeetCode0023Solution {
                 queue.offer(new Status(f.ptr.next.val, f.ptr.next));
             }
         }
-        return head.next;
+        return dummy.next;
     }
 
 }
