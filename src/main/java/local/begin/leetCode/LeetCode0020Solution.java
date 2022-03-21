@@ -48,7 +48,7 @@ public class LeetCode0020Solution {
             return true;
         }
 
-        Deque<Character> dp = new ArrayDeque<>();
+        Deque<Character> dp = new LinkedList<>();
         for(char c : s.toCharArray()) {
             if (brankets.values().contains(c)) {
                 dp.push(c);
