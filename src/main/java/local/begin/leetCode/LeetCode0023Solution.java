@@ -47,7 +47,7 @@ import java.util.PriorityQueue;
 
 public class LeetCode0023Solution {
 
-    class Status implements Comparable<Status>{
+    private class Status implements Comparable<Status>{
         int val;
         ListNode ptr;
 
