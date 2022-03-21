@@ -22,6 +22,17 @@ import local.begin.struct.ListNode;
  */
 public class LeetCode0019Solution {
 
+    /**
+     * 使用一次遍历，记录 cur 节点 和 cur 节点后 n + 1 个节点 pioneer 节点
+     *
+     * 然后 cur 和 pioneer 都向后走，pioneer的下个节点为空时，pioneer节点到达链表结尾
+     *
+     * cur 的 next 删除掉
+     *
+     * @param head
+     * @param n
+     * @return
+     */
     // 改进增加鲁棒性，考虑到n的大小是否大于零小于ListNode的大小
     public ListNode removeNthFromEnd(ListNode head, int n) {
         if (n == 0) {
@@ -29,12 +40,12 @@ public class LeetCode0019Solution {
         }
         ListNode pre = new ListNode(0);
         pre.next = head;
-        ListNode start = pre, end = pre;
+        ListNode pioneer = pre, cur = pre;
 
         // start 先向前移动 n
         while (n != 0) {
-            if(start.next != null) {
-                start = start.next;
+            if(pioneer.next != null) {
+                pioneer = pioneer.next;
                 n--;
             } else {
                 throw new IllegalArgumentException("n is beyond the list node's size");
@@ -42,12 +53,12 @@ public class LeetCode0019Solution {
 
         }
         // end 和 start 共同向前移动到 start 到最后的节点
-        while (start.next != null) {
-            start = start.next;
-            end = end.next;
+        while (pioneer.next != null) {
+            pioneer = pioneer.next;
+            cur = cur.next;
         }
         // 删除掉此时的end的节点
-        end.next = end.next.next;
+        cur.next = cur.next.next;
         return pre.next;
 
     }
