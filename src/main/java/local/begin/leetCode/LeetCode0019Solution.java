@@ -38,9 +38,9 @@ public class LeetCode0019Solution {
         if (n == 0) {
             throw new IllegalArgumentException(" n == 0 is illegal");
         }
-        ListNode pre = new ListNode(0);
-        pre.next = head;
-        ListNode pioneer = pre, cur = pre;
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode pioneer = dummy, cur = dummy;
 
         // start 先向前移动 n
         while (n != 0) {
@@ -59,7 +59,7 @@ public class LeetCode0019Solution {
         }
         // 删除掉此时的end的节点
         cur.next = cur.next.next;
-        return pre.next;
+        return dummy.next;
 
     }
 
