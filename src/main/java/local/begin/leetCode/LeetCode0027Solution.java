@@ -48,6 +48,18 @@ package local.begin.leetCode;
  */
 public class LeetCode0027Solution {
 
+    /**
+     * 永远只考察nums[l] == val
+     *
+     *      如果nums[l] == val nums[l] 和 nums[r - 1] 交换 r 向左一步
+     *      如果此时， nums[r - 1] == val 由于 l 没有向右一步，下轮循环回来还是看 交换后的 nums[l] 是否等于 val
+     *
+     *      如果nums[l] != val l向右走一步
+     *
+     * @param nums
+     * @param val
+     * @return
+     */
     public int removeElement(int[] nums, int val) {
         int l = 0, r = nums.length;
         while (l < r){
