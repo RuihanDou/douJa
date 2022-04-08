@@ -1,5 +1,8 @@
 package local.begin.leetCode;
 
+import java.util.*;
+
+
 /**
  * 40. 组合总和 II
  * 给定一个候选人编号的集合 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。
@@ -35,14 +38,6 @@ package local.begin.leetCode;
  * 1 <= candidates.length <= 100
  * 1 <= candidates[i] <= 50
  * 1 <= target <= 30
- */
-
-
-
-import java.util.*;
-
-/**
- *
  */
 
 public class LeetCode0040Solution {
