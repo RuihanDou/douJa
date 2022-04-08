@@ -35,14 +35,17 @@ public class LeetCode0045Solution {
     // 使用贪心，每次
     public int jump(int[] nums) {
         int len = nums.length;
+        // 第一次end是初始位置0，之后end是maxPosition
         int end = 0;
+        // 记录从当前位置及其左边位置，能跳到的最远位置
         int maxPosition = 0;
+        // 记录跳跃步数
         int steps = 0;
         for(int i = 0; i < len - 1; i++){
             maxPosition = Math.max(maxPosition, i + nums[i]);
             // i == 0 时，以下条件可以命中，证明要往前走一步
             // 之后的几步 nums[2]... 如果无法超过 maxPosition，那么 maxPosittion不会更新
-            // 下次命中 i == end 时，也许不是 第 i 个位置使得 跳到 maxPosition，但是 在 i 之前的某个位置（或者i）一定能让step增加一步跳到 maxPosition的位置
+            // 下次命中 i == end 时，也许不是 第 i 个位置使得 跳到 maxPosition，但是 在 i 之前的某个位置（或者i）一定能让step增加一步跳到 maxPosition的位置, 所以step要增加
             if(i == end){
                 end = maxPosition;
                 steps++;
