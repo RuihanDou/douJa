@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 54. 螺旋矩阵
+ *
  * 给你一个 m 行 n 列的矩阵 matrix ，请按照 顺时针螺旋顺序 ，返回矩阵中的所有元素。
  *
  *  
@@ -27,9 +29,6 @@ import java.util.List;
  * 1 <= m, n <= 10
  * -100 <= matrix[i][j] <= 100
  *
- * 来源：力扣（LeetCode）
- * 链接：https://leetcode-cn.com/problems/spiral-matrix
- * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 
 public class LeetCode0054Solution {
