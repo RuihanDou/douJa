@@ -30,7 +30,7 @@ public class LeetCode0357Solution {
         if(n == 1){
             return 10;
         }
-        // 当位数 n 有 2 <= n <= 10 时，哥哥位置数字不同的数 x 的个数为 {（ 9 * A( [d - 1] / 9 )） + 小于 n 位数的 所有countNumbersWithUniqueDigits }
+        // 当位数 n 有 2 <= n <= 10 时，各个位置数字不同的数 x 的个数为 {（ 9 * A( [d - 1] / 9 )） + 小于 n 位数的 所有countNumbersWithUniqueDigits }
         int res = 10, cur = 9;
         // 注意 上界 是 i < n - 1
         for(int i = 0; i < n - 1; i++){
