@@ -95,6 +95,7 @@ public class LeetCode0117Solution {
 //        return root;
 //    }
 
+    // 维护该行最后一个位置 last 和下一行的其实位置 nextStart
     Node last = null, nextStart = null;
 
     public Node connect(Node root){
