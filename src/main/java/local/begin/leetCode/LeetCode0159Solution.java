@@ -33,15 +33,18 @@ public class LeetCode0159Solution {
 
         int longest = 2;
 
+        // 窗口右界没有超过时
         while (r < n){
 
             if(map.size() < 3){
                 map.put(s.charAt(r), r++);
             }
-
+            // 滑动窗口包含有三个字符时
             if(map.size() == 3){
+                // 删除掉最左边的字符
                 int delIndex = Collections.min(map.values());
                 map.remove(s.charAt(delIndex));
+                // 窗口左界右移
                 l = delIndex + 1;
             }
 

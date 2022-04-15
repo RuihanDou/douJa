@@ -45,6 +45,14 @@ package local.begin.leetCode;
  * 开往 1 号加油站，此时油箱有 3 - 3 + 3 = 3 升汽油
  * 你无法返回 2 号加油站，因为返程需要消耗 4 升汽油，但是你的油箱只有 3 升汽油。
  * 因此，无论怎样，你都不可能绕环路行驶一周。
+ *
+ * 提示:
+ *
+ * gas.length == n
+ * cost.length == n
+ * 1 <= n <= 105
+ * 0 <= gas[i], cost[i] <= 104
+ *
  */
 public class LeetCode0134Solution {
 
