@@ -71,6 +71,7 @@ public class LeetCode0199Solution {
         return res;
     }
 
+    // 控制递归顺序，先右后左
     private void dfs(TreeNode node, int depth){
         if(node == null){
             return;

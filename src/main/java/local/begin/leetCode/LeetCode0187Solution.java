@@ -72,6 +72,7 @@ public class LeetCode0187Solution {
         HashSet<Long> seen = new HashSet<>();
         HashSet<String> res = new HashSet<>();
 
+        // hash 用来编码 看过的字符串 ; ten9 为了计算观察窗口右移后 hash移除左边字符的结果
         long hash = 0, ten9 = (long) 1e9;
 
         for(int i = 0; i < 9; i++){
@@ -83,6 +84,7 @@ public class LeetCode0187Solution {
             hash = hash * 10 + map[s.charAt(i)];
 
             if(seen.contains(hash)){
+                // s[i - 9, i + 1)
                 res.add(s.substring(i - 9, i + 1));
             }
             else {
