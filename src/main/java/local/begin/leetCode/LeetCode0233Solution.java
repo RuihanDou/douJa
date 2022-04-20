@@ -29,7 +29,7 @@ public class LeetCode0233Solution {
         // 但为了让代码看起来更加直观，这里保留了 k
         long mulk = 1;
         int ans = 0;
-        for (int k = 0; n >= mulk; ++k) {
+        while(n >= mulk){
             ans += (n / (mulk * 10)) * mulk + Math.min(Math.max(n % (mulk * 10) - mulk + 1, 0), mulk);
             mulk *= 10;
         }
