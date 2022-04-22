@@ -64,6 +64,7 @@ public class LeetCode0384Solution {
         Random random = new Random();
         for(int i = 0; i < length; i++){
             int j = i + random.nextInt(length - i);
+            // swap nums[i] and nums[j]
             int temp = nums[i];
             nums[i] = nums[j];
             nums[j] = temp;
