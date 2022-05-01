@@ -48,17 +48,23 @@ public class LeetCode1647Solution {
 
         int[] alphabet = new int[26];
         char[] cs = s.toCharArray();
+        // 统计 s 中 各个字母出现的频次
         for(char c : cs){
             alphabet[c - 'a']++;
         }
+        // 出现过的字符的出现次数
         Set<Integer> h = new HashSet<>();
+        // 记录删除次数
         int rst = 0;
         for (int i : alphabet){
+            // 该字符在 s 中出现过
             if(i != 0){
+                // 如果 出现过的字符出现的次数等于 此时的字符出现次数，删减此时出现的字符
                 while (h.contains(i)) {
                     i--;
                     rst++;
                 }
+                // 如果此时字符有保留，保留的字符次数加入set中
                 if(i != 0){
                     h.add(i);
                 }

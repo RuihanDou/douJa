@@ -35,8 +35,8 @@ public class LeetCode1025Solution {
 
     /**
      * n=1 的时候，区间 (0,1) 中没有整数是 n 的因数，所以此时 Alice 败。
-     * n = 2 的时候，Alice 只能拿 1，n 变成 11，Bob 无法继续操作，故 Alice 胜。
-     * n = 3 的时候，Alice 只能拿 1，n 变成 22，根据 n=2 的结论，我们知道此时 Bob 会获胜，Alice 败。
+     * n = 2 的时候，Alice 只能拿 1，n 变成 1，Bob 无法继续操作，故 Alice 胜。
+     * n = 3 的时候，Alice 只能拿 1，n 变成 2，根据 n=2 的结论，我们知道此时 Bob 会获胜，Alice 败。
      * n = 4 的时候，Alice 能拿 1 或 2，如果 Alice 拿 11，根据 n = 3n=3 的结论，Bob 会失败，Alice 会获胜。
      * n = 5 的时候，Alice 只能拿 1，根据 n=4 的结论，Alice 会失败。
 
