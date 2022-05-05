@@ -3,7 +3,7 @@ package local.begin.dataStructureAlgorithm.dataStruct;
 import local.begin.dataStructureAlgorithm.algoInterface.UF;
 
 /**
- *  路径压缩 （路径压缩后，rank不具有高度含义，但还可以作为union时的参考标准）
+ *  路径压缩 减小树的高度（路径压缩后，rank不具有高度含义，但还可以作为union时的参考标准）
  *  路径压缩后，算法复杂度为log*n
  */
 public class UnionFind5 implements UF {
