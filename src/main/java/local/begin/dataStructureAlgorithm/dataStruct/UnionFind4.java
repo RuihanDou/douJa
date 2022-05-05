@@ -4,7 +4,7 @@ package local.begin.dataStructureAlgorithm.dataStruct;
 import local.begin.dataStructureAlgorithm.algoInterface.UF;
 
 /**
- * 基于rank（树的高度）的优化
+ * 基于rank（树的高度）的优化（路径压缩后，rank不具有高度含义，但还可以作为union时的参考标准）
  */
 public class UnionFind4 implements UF {
 

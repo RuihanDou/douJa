@@ -2,9 +2,18 @@ package local.begin.dataStructureAlgorithm.dataStruct;
 
 import local.begin.dataStructureAlgorithm.algoInterface.Merger;
 
+/**
+ * 线段树 （或者 区间树） 用于动态的数据，基于区间的统计查询
+ *
+ * 虽然 线段树严格意义上 不是完全二叉树，但是，它是平衡二叉树，所以可以使用数组来构建树
+ *
+ * @param <E>
+ */
 public class SegmentTree<E> {
 
+    // data 中存储的是线段树的全局线段区间
     private E[] data;
+    // tree 中存储线段树
     private E[] tree;
     private Merger<E> merger;
 
@@ -19,22 +28,26 @@ public class SegmentTree<E> {
         }
 
         tree = (E[]) new Object[4 * arr.length];
+        // 最开始的构建是在  从tree[0]开始的[0, data.length - 1]区间的线段树
         buildSegmentTree(0, 0, data.length - 1);
 
     }
 
-    // 在treeIndex的位置创建表示区间[l ... r]的线段树
+    // 因为使用 tree 数组构建树
+    // 在tree[treeIndex]的位置创建表示区间[l ... r]的线段树
     private void buildSegmentTree(int treeIndex, int l, int r){
-
+        // 如果构建到叶子节点
         if(l == r){
             tree[treeIndex] = data[l];
             return;
         }
-
+        // 构建左右子树，确定左右子树(的根节点)，在数组 tree 中的位置
         int leftTreeIndex = leftChild(treeIndex);
         int rightTreeIndex = rightChild(treeIndex);
 
+        // 获取data中的区间范围
         int mid = l + (r - l) / 2;
+        // 创建左右子树
         buildSegmentTree(leftTreeIndex, l, mid);
         buildSegmentTree(rightTreeIndex, mid + 1, r);
 
@@ -93,7 +106,7 @@ public class SegmentTree<E> {
         }
     }
 
-    // 将index位置的值更新为e
+    // 将index位置的值更新为e, 本线段树不支持区间更新
     public void set(int index, E e){
         if(index < 0 || index >= data.length){
             throw new IllegalArgumentException("Index is illegal.");

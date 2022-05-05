@@ -4,6 +4,7 @@ import local.begin.dataStructureAlgorithm.algoInterface.UF;
 
 /**
  * 路径压缩使得 树的高度不超过 2
+ * 路径压缩后，算法复杂度为log*n
  */
 public class UnionFind6  implements UF {
 

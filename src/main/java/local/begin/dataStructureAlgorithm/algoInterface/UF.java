@@ -1,6 +1,9 @@
 package local.begin.dataStructureAlgorithm.algoInterface;
 
-public interface UF {
+/**
+ * 并查集的接口
+ */
+public interface  UF {
 
     int getSize();
     boolean isConnected(int p, int q);
