@@ -15,34 +15,24 @@ import java.util.Arrays;
  */
 public class Baidu {
 
-    // 右侧的k固定，在k左边选 l 和 r
+
 
     public int triangleNum(int[] nums){
 
-        int rst = 0;
-
-        Arrays.sort(nums);
         int n = nums.length;
-        if(n < 3){
-            return rst;
-        }
-
-        for(int k = 2; k < n; k++){
-            int l = 0, r = k - 1;
-            if(nums[l] + nums[r] < nums[k]){
-                continue;
-            }
-            while (l < r){
-                if(nums[l] + nums[r] > nums[k]){
-                    rst += r - l;
-                    r--;
-                } else {
-                    l++;
+        Arrays.sort(nums);
+        int ans = 0;
+        for (int i = 0; i < n; i++) {
+            int k = i;
+            for (int j = i + 1; j < n; j++) {
+                while (k + 1 < n && nums[k + 1] < nums[i] + nums[j]) {
+                    k++;
                 }
+                ans += Math.max(k - j, 0);
             }
         }
+        return ans;
 
-        return rst;
     }
 
     public static void main(String[] args) {
