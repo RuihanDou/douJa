@@ -77,5 +77,15 @@ public class LeetCode1300Solution {
         return ret;
     }
 
+    public static void main(String[] args) {
+        int[] arr = new int[]{60864,25176,27249,21296,20204};
+        int target = 56803;
+
+        LeetCode1300Solution solution = new LeetCode1300Solution();
+        int ans = solution.findBestValue(arr, target);
+        System.out.println(ans);
+
+    }
+
 
 }
