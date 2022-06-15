@@ -33,6 +33,7 @@ import java.util.Deque;
  * }
  */
 public class Interview06 {
+
     public int[] reversePrint(ListNode head) {
         Deque<Integer> stack = new ArrayDeque<>();
         while (head != null) {
@@ -47,6 +48,22 @@ public class Interview06 {
         }
         return res;
     }
+
+//    public int[] reversePrint(ListNode head){
+//        int length = 0;
+//        ListNode curr = head;
+//        while (curr != null){
+//            length++;
+//            curr = curr.next;
+//        }
+//
+//        int[] res = new int[length];
+//        for(int i = length - 1; i >= 0; i++){
+//            res[i] = head.val;
+//            head = head.next;
+//        }
+//        return res;
+//    }
 
     public static void main(String[] args) {
         ListNode head = new ListNode(1);
