@@ -1,7 +1,6 @@
 package local.begin.leetCode;
 
 
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 import local.begin.struct.ListNode;
 
 /**
