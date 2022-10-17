@@ -44,4 +44,10 @@ public class ShenWei1 {
         return dp[steps - 1];
     }
 
+    public static void main(String[] args) {
+        int[] cost = {1,10,5,3,8,20,25,22,100,3};
+        ShenWei1 shenWei1 = new ShenWei1();
+        System.out.println(shenWei1.getAllCost(cost));
+    }
+
 }
