@@ -95,6 +95,24 @@ public class LeetCode0215Solution {
         return j;
     }
 
+    private int partition1(int[] arr, int l, int r, Random rnd){
+        // 这种partition 有的测试用例会超时（有超级多一样的数字的时候）
+        // 生成 [l, r] 之间的随机索引
+        int p = l + rnd.nextInt(r - l + 1);
+
+        swap(arr, l, p);
+
+        int j = l;
+        for (int i = l + 1; i <= r; i++) {
+            if (arr[i] < arr[l]){
+                swap(arr, i, ++j);
+            }
+        }
+
+        swap(arr, l, j);
+        return j;
+    }
+
     private void swap(int[] arr, int i, int j){
 
         int t = arr[i];
